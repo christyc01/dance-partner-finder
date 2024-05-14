@@ -124,7 +124,8 @@ const CreateDancer = () => {
               htmlFor={danceStyleOption}
               className="text-xl mr-4 text-gray-500"
             >
-              {danceStyleOption}
+              {danceStyleOption.slice(0, 1).toUpperCase()}
+              {danceStyleOption.slice(1)}
             </label>
           </div>
         ))}
