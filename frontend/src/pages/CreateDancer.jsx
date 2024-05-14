@@ -56,14 +56,14 @@ const CreateDancer = () => {
     if (e.target.checked) {
       setFormValues({
         ...formValues,
-        danceStyles: [...formValues.danceStyles, e.target.value],
+        danceStyles: [...formValues.danceStyles, e.target.value].sort(),
       });
     } else {
       setFormValues({
         ...formValues,
-        danceStyles: formValues.danceStyles.filter(
-          (danceStyle) => danceStyle !== e.target.value
-        ),
+        danceStyles: formValues.danceStyles
+          .filter((danceStyle) => danceStyle !== e.target.value)
+          .sort(),
       });
     }
   };
