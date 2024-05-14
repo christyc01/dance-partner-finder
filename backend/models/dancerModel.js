@@ -12,7 +12,7 @@ const dancerSchema = new mongoose.Schema(
     },
     danceStyles: {
       type: Array,
-      required: false,
+      required: true,
     },
   },
   {

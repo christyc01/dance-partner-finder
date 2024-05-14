@@ -5,11 +5,15 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    // if (!req.body.name || !req.body.location || !req.body.danceStyles) {
-    //   return res.status(400).send({
-    //     message: 'Send all required fields',
-    //   });
-    // }
+    if (
+      !req.body.name ||
+      !req.body.location ||
+      !(req.body.danceStyles && req.body.danceStyles.length)
+    ) {
+      return res.status(400).send({
+        message: 'Send all required fields',
+      });
+    }
 
     const newDancer = {
       name: req.body.name,
@@ -47,9 +51,13 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    // if (!req.body.name || !req.body.location || !req.body.danceStyles) {
-    //   return res.status(400).send({ message: 'Missing a required field' });
-    // }
+    if (
+      !req.body.name ||
+      !req.body.location ||
+      !(req.body.danceStyles && req.body.danceStyles.length)
+    ) {
+      return res.status(400).send({ message: 'Missing a required field' });
+    }
     const dancer = await DancerModel.findByIdAndUpdate(
       req.params.id,
       req.body,
