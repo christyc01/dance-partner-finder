@@ -50,7 +50,13 @@ const ShowDancer = () => {
           </div>
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Dance styles</span>
-            <span>{dancer.danceStyles.join(', ')}</span>
+            <span className="flex">
+              {dancer?.danceStyles?.map((danceStyle) => (
+                <div key={danceStyle._id} className="bg-red-300 p-3 m-3">
+                  {danceStyle}
+                </div>
+              ))}
+            </span>
           </div>
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Create Time</span>

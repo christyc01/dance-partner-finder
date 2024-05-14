@@ -17,8 +17,14 @@ const DancerModal = ({ dancer, closeModal }) => {
           onClick={closeModal}
           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
         />
-        <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">
-          {dancer.danceStyles.join(', ')}
+        <h2 className="w-fit px-4 py-1 flex">
+          <span>
+            {dancer?.danceStyles?.map((danceStyle) => (
+              <div key={danceStyle._id} className="bg-red-300 p-3 m-3">
+                {danceStyle}
+              </div>
+            ))}
+          </span>
         </h2>
         <h4 className="my-2 text-gray-500">{dancer._id}</h4>
         <div className="flex justify-start items-center gap-x-2">
