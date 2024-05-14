@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     const newDancer = {
       name: req.body.name,
       location: req.body.location,
-      // danceStyles: req.body.danceStyles,
+      danceStyles: req.body.danceStyles,
     };
     const newlyCreatedDancer = await DancerModel.create(newDancer);
     return res.status(201).send(newlyCreatedDancer);

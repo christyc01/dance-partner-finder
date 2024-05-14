@@ -50,7 +50,7 @@ const ShowDancer = () => {
           </div>
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Dance styles</span>
-            <span>{dancer.danceStyles}</span>
+            <span>{dancer.danceStyles.join(', ')}</span>
           </div>
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Create Time</span>

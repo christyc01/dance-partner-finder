@@ -9,7 +9,7 @@ const CreateDancer = () => {
   const [formValues, setFormValues] = useState({
     name: '',
     location: '',
-    danceStyles: 0,
+    danceStyles: [],
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

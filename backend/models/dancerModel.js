@@ -10,14 +10,14 @@ const dancerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    danceStyles: {
+      type: Array,
+      required: false,
+    },
   },
   {
     timestamps: true,
   }
 );
-// danceStyles: {
-//   type: Array,
-//   required: false,
-// },
 
 export const DancerModel = mongoose.model('Dancer', dancerSchema);

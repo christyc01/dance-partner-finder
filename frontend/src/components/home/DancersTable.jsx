@@ -28,10 +28,7 @@ const DancersTable = ({ data }) => {
             </td>
             <td>{dancer.name}</td>
             <td>{dancer.location}</td>
-            <td>
-              ...
-              {/* {dancer.danceStyles} */}
-            </td>
+            <td>{dancer.danceStyles.join(', ')}</td>
             <td className="border border-slate-700 rounded-md text-center">
               <div className="flex justify-center gap-x-4">
                 <Link to={`/dancers/details/${dancer._id}`}>
