@@ -14,6 +14,14 @@ const CreateDancer = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const danceStyleOptions = [
+    'tango',
+    'waltz',
+    'foxtrot',
+    'bachata',
+    'salsa',
+    'swing',
+  ].sort();
 
   const createDancer = (e) => {
     e.preventDefault();
@@ -103,27 +111,23 @@ const CreateDancer = () => {
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
-        <div className="my-4">
-          <input
-            id="salsa"
-            type="checkbox"
-            value={'salsa'}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="salsa" className="text-xl mr-4 text-gray-500">
-            Salsa
-          </label>
 
-          <input
-            id="bachata"
-            type="checkbox"
-            value={'bachata'}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor="bachata" className="text-xl mr-4 text-gray-500">
-            Bachata
-          </label>
-        </div>
+        {danceStyleOptions.map((danceStyleOption) => (
+          <div key={danceStyleOption}>
+            <input
+              id={danceStyleOption}
+              type="checkbox"
+              value={danceStyleOption}
+              onChange={handleCheckboxChange}
+            />
+            <label
+              htmlFor={danceStyleOption}
+              className="text-xl mr-4 text-gray-500"
+            >
+              {danceStyleOption}
+            </label>
+          </div>
+        ))}
         <button type="submit" className="p-2 bg-sky-300 m-8">
           Submit
         </button>
