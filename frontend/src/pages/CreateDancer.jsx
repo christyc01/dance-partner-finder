@@ -54,21 +54,18 @@ const CreateDancer = () => {
 
   const handleCheckboxChange = (e) => {
     if (e.target.checked) {
-      console.log('checked value:', [
-        ...formValues.danceStyles,
-        e.target.value,
-      ]);
+      setFormValues({
+        ...formValues,
+        danceStyles: [...formValues.danceStyles, e.target.value],
+      });
     } else {
-      console.log(
-        'non-checked:',
-        formValues.danceStyles.filter((option) => option !== e.target.value)
-      );
+      setFormValues({
+        ...formValues,
+        danceStyles: formValues.danceStyles.filter(
+          (danceStyle) => danceStyle !== e.target.value
+        ),
+      });
     }
-    const updatedCheckboxValues = {
-      danceStyles: [...formValues.danceStyles, e.target.value],
-    };
-    console.log('updatedCheckboxValues:', updatedCheckboxValues);
-    setFormValues({ ...formValues, ...updatedCheckboxValues });
   };
 
   return (
