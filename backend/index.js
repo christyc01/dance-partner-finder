@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { PORT, mongoDBURL } from './config.js';
-import router from './routes/books/booksRoute.js';
+import router from './routes/dancers/dancersRoute.js';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use('/books', router);
+app.use('/dancers', router);
 
 mongoose
   .connect(mongoDBURL)

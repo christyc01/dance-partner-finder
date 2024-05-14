@@ -5,32 +5,34 @@ import { useSnackbar } from 'notistack';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
-const CreateBook = () => {
+const CreateDancer = () => {
   const [formValues, setFormValues] = useState({
-    title: '',
-    author: '',
-    publishYear: 0,
+    name: '',
+    location: '',
+    danceStyles: 0,
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const createBook = (e) => {
+  const createDancer = (e) => {
     e.preventDefault();
 
     const data = {
-      title: formValues.title,
-      author: formValues.author,
-      publishYear: formValues.publishYear,
+      name: formValues.name,
+      location: formValues.location,
+      // danceStyles: formValues.danceStyles,
     };
 
     setLoading(true);
 
     axios
-      .post('http://localhost:5555/books', data)
+      .post('http://localhost:5555/dancers', data)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar('Successfully created a book!', { variant: 'success' });
+        enqueueSnackbar('Successfully created a dancer!', {
+          variant: 'success',
+        });
         navigate('/');
       })
       .catch((error) => {
@@ -54,48 +56,48 @@ const CreateBook = () => {
     <div className="p-4">
       <BackButton />
       {loading ? <Spinner /> : ''}
-      <h1 className="text-3xl my-4">Create Book</h1>
+      <h1 className="text-3xl my-4">Create Dancer</h1>
       <form
-        onSubmit={createBook}
+        onSubmit={createDancer}
         className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto"
       >
         <div className="my-4">
-          <label htmlFor="title" className="text-xl mr-4 text-gray-500">
-            Title:
+          <label htmlFor="name" className="text-xl mr-4 text-gray-500">
+            Name:
           </label>
           <input
-            id="title"
-            placeholder="Enter title"
+            id="name"
+            placeholder="Enter name"
             type="text"
-            value={formValues.title}
+            value={formValues.name}
             onChange={handleChange}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
         <div className="my-4">
-          <label htmlFor="author" className="text-xl mr-4 text-gray-500">
-            Author:
+          <label htmlFor="location" className="text-xl mr-4 text-gray-500">
+            Location:
           </label>
           <input
-            id="author"
-            placeholder="Enter author"
+            id="location"
+            placeholder="Enter location"
             type="text"
-            value={formValues.author}
+            value={formValues.location}
             onChange={handleChange}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           />
         </div>
         <div className="my-4">
-          <label htmlFor="publishYear" className="text-xl mr-4 text-gray-500">
-            Publish year:
+          <label htmlFor="danceStyles" className="text-xl mr-4 text-gray-500">
+            Dance styles:
           </label>
-          <input
-            id="publishYear"
-            placeholder="Enter publish year"
+          {/* <input
+            id="danceStyles"
+            placeholder="Enter dance styles"
             type="number"
-            value={formValues.publishYear}
+            value={formValues.danceStyles}
             onChange={handleChange}
-          />
+          /> */}
         </div>
         <button type="submit" className="p-2 bg-sky-300 m-8">
           Submit
@@ -105,4 +107,4 @@ const CreateBook = () => {
   );
 };
 
-export default CreateBook;
+export default CreateDancer;

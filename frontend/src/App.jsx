@@ -1,18 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
-import CreateBook from './pages/CreateBook';
-import DeleteBook from './pages/DeleteBook';
-import EditBook from './pages/EditBook';
+import CreateDancer from './pages/CreateDancer';
+import DeleteDancer from './pages/DeleteDancer';
+import EditDancer from './pages/EditDancer';
 import Home from './pages/Home';
-import ShowBook from './pages/ShowBook';
+import ShowDancer from './pages/ShowDancer';
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/books/create" element={<CreateBook />} />
-      <Route path="/books/delete/:id" element={<DeleteBook />} />
-      <Route path="/books/edit/:id" element={<EditBook />} />
-      <Route path="/books/details/:id" element={<ShowBook />} />
+      <Route path="/dancers/create" element={<CreateDancer />} />
+      <Route path="/dancers/delete/:id" element={<DeleteDancer />} />
+      <Route path="/dancers/edit/:id" element={<EditDancer />} />
+      <Route path="/dancers/details/:id" element={<ShowDancer />} />
     </Routes>
   );
 };

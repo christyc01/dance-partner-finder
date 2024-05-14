@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from 'react-icons/md';
 import Spinner from '../components/Spinner';
-import BooksCard from '../components/home/BooksCard';
-import BooksTable from '../components/home/BooksTable';
+import DancersCard from '../components/home/DancerCard';
+import DancersTable from '../components/home/DancersTable';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -16,7 +16,7 @@ const Home = () => {
     const fetchData = async () => {
       // Example using try/catch
       // try {
-      //   const response = await fetch('http://localhost:5555/books');
+      //   const response = await fetch('http://localhost:5555/dancers');
       //   const parsedResponse = await response.json();
       //   setData(parsedResponse);
       // } catch (error) {
@@ -24,13 +24,13 @@ const Home = () => {
       // }
 
       // Example using .then()
-      // fetch('http://localhost:5555/books')
+      // fetch('http://localhost:5555/dancers')
       //   .then((res) => res.json())
       //   .then((parsedRes) => setData(parsedRes));
 
       // Example using Axios
       axios
-        .get('http://localhost:5555/books')
+        .get('http://localhost:5555/dancers')
         .then((res) => {
           setData(res.data.data);
           setLoading(false);
@@ -60,17 +60,17 @@ const Home = () => {
         </button>
       </div>
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl my-8">Books List</h1>
-        <Link to="/books/create">
+        <h1 className="text-3xl my-8">Dancers List</h1>
+        <Link to="/dancers/create">
           <MdOutlineAddBox className="text-sky-800 text-4xl" />
         </Link>
       </div>
       {loading ? (
         <Spinner />
       ) : view === 'card' ? (
-        <BooksCard data={data} />
+        <DancersCard data={data} />
       ) : (
-        <BooksTable data={data} />
+        <DancersTable data={data} />
       )}
     </div>
   );
