@@ -21,7 +21,7 @@ const CreateDancer = () => {
     const data = {
       name: formValues.name,
       location: formValues.location,
-      // danceStyles: formValues.danceStyles,
+      danceStyles: formValues.danceStyles,
     };
 
     setLoading(true);
@@ -50,6 +50,25 @@ const CreateDancer = () => {
       [e.target.id]: e.target.value,
     };
     setFormValues(updatedValues);
+  };
+
+  const handleCheckboxChange = (e) => {
+    if (e.target.checked) {
+      console.log('checked value:', [
+        ...formValues.danceStyles,
+        e.target.value,
+      ]);
+    } else {
+      console.log(
+        'non-checked:',
+        formValues.danceStyles.filter((option) => option !== e.target.value)
+      );
+    }
+    const updatedCheckboxValues = {
+      danceStyles: [...formValues.danceStyles, e.target.value],
+    };
+    console.log('updatedCheckboxValues:', updatedCheckboxValues);
+    setFormValues({ ...formValues, ...updatedCheckboxValues });
   };
 
   return (
@@ -88,16 +107,25 @@ const CreateDancer = () => {
           />
         </div>
         <div className="my-4">
-          <label htmlFor="danceStyles" className="text-xl mr-4 text-gray-500">
-            Dance styles:
+          <input
+            id="salsa"
+            type="checkbox"
+            value={'salsa'}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="salsa" className="text-xl mr-4 text-gray-500">
+            Salsa
           </label>
-          {/* <input
-            id="danceStyles"
-            placeholder="Enter dance styles"
-            type="number"
-            value={formValues.danceStyles}
-            onChange={handleChange}
-          /> */}
+
+          <input
+            id="bachata"
+            type="checkbox"
+            value={'bachata'}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="bachata" className="text-xl mr-4 text-gray-500">
+            Bachata
+          </label>
         </div>
         <button type="submit" className="p-2 bg-sky-300 m-8">
           Submit
