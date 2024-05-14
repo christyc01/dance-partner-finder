@@ -31,7 +31,7 @@ const DancersTable = ({ data }) => {
             <td>
               <div className="flex">
                 {dancer?.danceStyles?.map((danceStyle) => (
-                  <div key={danceStyle._id} className="bg-red-300 p-3 m-3">
+                  <div key={danceStyle} className="bg-red-300 p-3 m-3">
                     {danceStyle}
                   </div>
                 ))}
