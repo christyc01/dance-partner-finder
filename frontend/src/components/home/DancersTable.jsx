@@ -17,22 +17,26 @@ const DancersTable = ({ data }) => {
   // Get all & unique locations
   useEffect(() => {
     const allLocations = data.map((dancer) => dancer.location);
-    console.log('allLocations:', allLocations);
+    // console.log('allLocations:', allLocations);
     const uniqueLocations = allLocations.filter(
       (value, index, array) => array.indexOf(value) === index
     );
-    console.log('uniqueLocations:', uniqueLocations);
-  }, []);
+    // console.log('uniqueLocations:', uniqueLocations);
+    setAllUniqueLocationsArray(uniqueLocations);
+  }, [data]);
+  console.log('allUniqueLocationsArray:', allUniqueLocationsArray);
 
   // Get all & unique dance styles
   useEffect(() => {
     const allDanceStyles = data.flatMap((dancer) => dancer.danceStyles || []);
-    console.log('allDanceStyles:', allDanceStyles);
+    // console.log('allDanceStyles:', allDanceStyles);
     const uniqueDanceStyles = allDanceStyles.filter(
       (value, index, array) => array.indexOf(value) === index
     );
-    console.log('uniqueDanceStyles:', uniqueDanceStyles);
-  }, []);
+    // console.log('uniqueDanceStyles:', uniqueDanceStyles);
+    setAllUniqueDanceStylesArray(uniqueDanceStyles);
+  }, [data]);
+  console.log('allUniqueDanceStylesArray:', allUniqueDanceStylesArray);
 
   // Set data to show based on filtered locations/dance styles
   useEffect(() => {
