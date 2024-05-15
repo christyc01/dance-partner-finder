@@ -61,6 +61,7 @@ const DancersTable = ({ data }) => {
             onClick={() => {
               setLocationToShow('');
             }}
+            className={!locationToShow ? `bg-pink-500` : ``}
           >
             View all dancers (locations)
           </p>
@@ -71,6 +72,7 @@ const DancersTable = ({ data }) => {
                 onClick={() => {
                   setLocationToShow(uniqueLocation);
                 }}
+                className={uniqueLocation === locationToShow && `bg-pink-500`}
               >
                 View {uniqueLocation} dancers
               </p>
@@ -81,6 +83,7 @@ const DancersTable = ({ data }) => {
             onClick={() => {
               setDanceStyleToShow('');
             }}
+            className={!danceStyleToShow && 'bg-pink-500'}
           >
             View all dancers (dance styles)
           </p>
@@ -91,6 +94,9 @@ const DancersTable = ({ data }) => {
                 onClick={() => {
                   setDanceStyleToShow(uniqueDanceStyle);
                 }}
+                className={
+                  uniqueDanceStyle === danceStyleToShow && 'bg-pink-500'
+                }
               >
                 View {uniqueDanceStyle} dancers
               </p>
