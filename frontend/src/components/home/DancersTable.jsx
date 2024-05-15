@@ -24,7 +24,7 @@ const DancersTable = ({ data }) => {
     // console.log('uniqueLocations:', uniqueLocations);
     setAllUniqueLocationsArray(uniqueLocations);
   }, [data]);
-  console.log('allUniqueLocationsArray:', allUniqueLocationsArray);
+  // console.log('allUniqueLocationsArray:', allUniqueLocationsArray);
 
   // Get all & unique dance styles
   useEffect(() => {
@@ -36,12 +36,24 @@ const DancersTable = ({ data }) => {
     // console.log('uniqueDanceStyles:', uniqueDanceStyles);
     setAllUniqueDanceStylesArray(uniqueDanceStyles);
   }, [data]);
-  console.log('allUniqueDanceStylesArray:', allUniqueDanceStylesArray);
+  // console.log('allUniqueDanceStylesArray:', allUniqueDanceStylesArray);
 
   // Set data to show based on filtered locations/dance styles
   useEffect(() => {
     console.log('Set data to show based on filtered locations/dance styles');
-  }, []);
+    // initialize filteredData to the data that's getting passed in to the component
+    const filteredData = data;
+    // check if we have a locationToShow (which gets set by clicking on the buttons)
+    // if we do, set filteredData to items where the location matches this locationToShow
+    if (locationToShow) {
+      console.log('location to show');
+    }
+    // similar for danceStyles, but check that danceStyles includes the one to show
+    // then set the dataToShow to this filteredData
+    if (danceStyleToShow) {
+      console.log('dance style to show');
+    }
+  }, [locationToShow, danceStyleToShow, data]);
 
   return (
     <div>
