@@ -9,42 +9,46 @@ const DancersTable = ({ data }) => {
   const [dataToShow, setDataToShow] = useState(data);
   const [locationToShow, setLocationToShow] = useState();
   const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
-  const allLocationsArray = [];
+  const [danceStyleToShow, setDanceStyleToShow] = useState();
+  const [allUniqueDanceStylesArray, setAllUniqueDanceStylesArray] = useState(
+    []
+  );
 
-  const findAllLocations = () =>
-    data.map((value) => {
-      allLocationsArray.push(value.location);
-    });
-
-  const findUniqueLocations = () => {
-    const uniqueLocationsArray = allLocationsArray.filter(
+  // Get all & unique locations
+  useEffect(() => {
+    const allLocations = data.map((dancer) => dancer.location);
+    console.log('allLocations:', allLocations);
+    const uniqueLocations = allLocations.filter(
       (value, index, array) => array.indexOf(value) === index
     );
-    setAllUniqueLocationsArray(uniqueLocationsArray);
-  };
+    console.log('uniqueLocations:', uniqueLocations);
+  }, []);
 
+  // Get all & unique dance styles
   useEffect(() => {
-    findAllLocations();
-    findUniqueLocations();
-    setDataToShow(
-      !locationToShow
-        ? data
-        : data.filter(
-            (filteredLocation) => filteredLocation.location === locationToShow
-          )
+    const allDanceStyles = data.flatMap((dancer) => dancer.danceStyles || []);
+    console.log('allDanceStyles:', allDanceStyles);
+    const uniqueDanceStyles = allDanceStyles.filter(
+      (value, index, array) => array.indexOf(value) === index
     );
-  }, [locationToShow]);
+    console.log('uniqueDanceStyles:', uniqueDanceStyles);
+  }, []);
+
+  // Set data to show based on filtered locations/dance styles
+  useEffect(() => {
+    console.log('Set data to show based on filtered locations/dance styles');
+  }, []);
 
   return (
     <div>
-      <div className="bg-green-500 z-60">
-        <div>
+      <div>
+        <div className="bg-green-500 z-60">
           <p
             onClick={() => {
               setLocationToShow('');
             }}
           >
-            View all dancers
+            View all dancers (locations)
           </p>
           {allUniqueLocationsArray &&
             allUniqueLocationsArray.map((uniqueLocation) => (
@@ -55,6 +59,26 @@ const DancersTable = ({ data }) => {
                 }}
               >
                 View {uniqueLocation} dancers
+              </p>
+            ))}
+        </div>
+        <div className="bg-yellow-500 z-60">
+          <p
+            onClick={() => {
+              setDanceStyleToShow('');
+            }}
+          >
+            View all dancers (dance styles)
+          </p>
+          {allUniqueDanceStylesArray &&
+            allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
+              <p
+                key={uniqueDanceStyle}
+                onClick={() => {
+                  setDanceStyleToShow(uniqueDanceStyle);
+                }}
+              >
+                View {uniqueDanceStyle} dancers
               </p>
             ))}
         </div>
