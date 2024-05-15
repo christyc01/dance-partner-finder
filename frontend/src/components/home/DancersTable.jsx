@@ -8,8 +8,24 @@ import { Link } from 'react-router-dom';
 const DancersTable = ({ data }) => {
   const [dataToShow, setDataToShow] = useState(data);
   const [locationToShow, setLocationToShow] = useState();
+  const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
+  const allLocationsArray = [];
+
+  const findAllLocations = () =>
+    data.map((value) => {
+      allLocationsArray.push(value.location);
+    });
+
+  const findUniqueLocations = () => {
+    const uniqueLocationsArray = allLocationsArray.filter(
+      (value, index, array) => array.indexOf(value) === index
+    );
+    setAllUniqueLocationsArray(uniqueLocationsArray);
+  };
 
   useEffect(() => {
+    findAllLocations();
+    findUniqueLocations();
     setDataToShow(
       !locationToShow
         ? data
@@ -30,20 +46,17 @@ const DancersTable = ({ data }) => {
           >
             View all dancers
           </p>
-          <p
-            onClick={() => {
-              setLocationToShow('Calgary');
-            }}
-          >
-            View Calgary dancers
-          </p>
-          <p
-            onClick={() => {
-              setLocationToShow('Edmonton');
-            }}
-          >
-            View Edmonton dancers
-          </p>
+          {allUniqueLocationsArray &&
+            allUniqueLocationsArray.map((uniqueLocation) => (
+              <p
+                key={uniqueLocation}
+                onClick={() => {
+                  setLocationToShow(uniqueLocation);
+                }}
+              >
+                View {uniqueLocation} dancers
+              </p>
+            ))}
         </div>
       </div>
       <table className="w-full border-separate border-spacing-2">
