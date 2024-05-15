@@ -17,41 +17,36 @@ const DancersTable = ({ data }) => {
   // Get all & unique locations
   useEffect(() => {
     const allLocations = data.map((dancer) => dancer.location);
-    // console.log('allLocations:', allLocations);
     const uniqueLocations = allLocations.filter(
       (value, index, array) => array.indexOf(value) === index
     );
-    // console.log('uniqueLocations:', uniqueLocations);
     setAllUniqueLocationsArray(uniqueLocations);
   }, [data]);
-  // console.log('allUniqueLocationsArray:', allUniqueLocationsArray);
 
   // Get all & unique dance styles
   useEffect(() => {
     const allDanceStyles = data.flatMap((dancer) => dancer.danceStyles || []);
-    // console.log('allDanceStyles:', allDanceStyles);
     const uniqueDanceStyles = allDanceStyles.filter(
       (value, index, array) => array.indexOf(value) === index
     );
-    // console.log('uniqueDanceStyles:', uniqueDanceStyles);
     setAllUniqueDanceStylesArray(uniqueDanceStyles);
   }, [data]);
-  // console.log('allUniqueDanceStylesArray:', allUniqueDanceStylesArray);
 
   // Set data to show based on filtered locations/dance styles
   useEffect(() => {
     console.log('Set data to show based on filtered locations/dance styles');
-    // initialize filteredData to the data that's getting passed in to the component
-    const filteredData = data;
-    // check if we have a locationToShow (which gets set by clicking on the buttons)
-    // if we do, set filteredData to items where the location matches this locationToShow
+    let filteredData = data;
     if (locationToShow) {
       console.log('location to show');
+      filteredData = data.filter((item) => item.location === locationToShow);
+      console.log('filteredData:', filteredData);
     }
-    // similar for danceStyles, but check that danceStyles includes the one to show
-    // then set the dataToShow to this filteredData
     if (danceStyleToShow) {
       console.log('dance style to show');
+      filteredData = data.filter((item) =>
+        item.danceStyles.includes(danceStyleToShow)
+      );
+      console.log('filteredData:', filteredData);
     }
   }, [locationToShow, danceStyleToShow, data]);
 
