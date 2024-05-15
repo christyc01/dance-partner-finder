@@ -38,16 +38,19 @@ const DancersTable = ({ data }) => {
     let filteredData = data;
     if (locationToShow) {
       console.log('location to show');
-      filteredData = data.filter((item) => item.location === locationToShow);
+      filteredData = filteredData.filter(
+        (item) => item.location === locationToShow
+      );
       console.log('filteredData:', filteredData);
     }
     if (danceStyleToShow) {
       console.log('dance style to show');
-      filteredData = data.filter((item) =>
+      filteredData = filteredData.filter((item) =>
         item.danceStyles.includes(danceStyleToShow)
       );
       console.log('filteredData:', filteredData);
     }
+    setDataToShow(filteredData);
   }, [locationToShow, danceStyleToShow, data]);
 
   return (
