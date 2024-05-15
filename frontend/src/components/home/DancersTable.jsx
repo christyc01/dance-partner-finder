@@ -54,53 +54,69 @@ const DancersTable = ({ data }) => {
   }, [locationToShow, danceStyleToShow, data]);
 
   return (
-    <div>
-      <div>
-        <div className="bg-green-500 z-60">
-          <p
-            onClick={() => {
-              setLocationToShow('');
-            }}
-            className={!locationToShow ? `bg-pink-500` : ``}
-          >
-            View all dancers (locations)
-          </p>
-          {allUniqueLocationsArray &&
-            allUniqueLocationsArray.map((uniqueLocation) => (
-              <p
-                key={uniqueLocation}
-                onClick={() => {
-                  setLocationToShow(uniqueLocation);
-                }}
-                className={uniqueLocation === locationToShow && `bg-pink-500`}
-              >
-                View {uniqueLocation} dancers
-              </p>
-            ))}
+    <div className="p-4">
+      <div className="flex justify-between mb-6">
+        <div className="bg-white shadow-lg p-4 rounded-lg w-full mr-4">
+          <h3 className="text-xl font-semibold mb-2 text-green-600">
+            Filter by Location
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <p
+              onClick={() => {
+                setLocationToShow('');
+              }}
+              className={`py-2 px-4 rounded-full ${
+                !locationToShow && 'bg-pink-500'
+              }`}
+            >
+              View all dancers (locations)
+            </p>
+            {allUniqueLocationsArray &&
+              allUniqueLocationsArray.map((uniqueLocation) => (
+                <p
+                  key={uniqueLocation}
+                  onClick={() => {
+                    setLocationToShow(uniqueLocation);
+                  }}
+                  className={`py-2 px-4 rounded-full ${
+                    uniqueLocation === locationToShow && 'bg-pink-500'
+                  }`}
+                >
+                  View {uniqueLocation} dancers
+                </p>
+              ))}
+          </div>
         </div>
-        <div className="bg-yellow-500 z-60">
-          <p
-            onClick={() => {
-              setDanceStyleToShow('');
-            }}
-            className={!danceStyleToShow && 'bg-pink-500'}
-          >
-            View all dancers (dance styles)
-          </p>
-          {allUniqueDanceStylesArray &&
-            allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
-              <p
-                key={uniqueDanceStyle}
-                onClick={() => {
-                  setDanceStyleToShow(uniqueDanceStyle);
-                }}
-                className={
-                  uniqueDanceStyle === danceStyleToShow && 'bg-pink-500'
-                }
-              >
-                View {uniqueDanceStyle} dancers
-              </p>
-            ))}
+        <div className="bg-white shadow-lg p-4 rounded-lg w-full ml-4">
+          <h3 className="text-xl font-semibold mb-2 text-green-600">
+            Filter by Dance Style
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <p
+              onClick={() => {
+                setDanceStyleToShow('');
+              }}
+              className={`py-2 px-4 rounded-full ${
+                !danceStyleToShow && 'bg-pink-500'
+              }`}
+            >
+              View all dancers (dance styles)
+            </p>
+            {allUniqueDanceStylesArray &&
+              allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
+                <p
+                  key={uniqueDanceStyle}
+                  onClick={() => {
+                    setDanceStyleToShow(uniqueDanceStyle);
+                  }}
+                  className={`py-2 px-4 rounded-full ${
+                    uniqueDanceStyle === danceStyleToShow && 'bg-pink-500'
+                  }`}
+                >
+                  View {uniqueDanceStyle} dancers
+                </p>
+              ))}
+          </div>
         </div>
       </div>
       <table className="w-full border-separate border-spacing-2">
