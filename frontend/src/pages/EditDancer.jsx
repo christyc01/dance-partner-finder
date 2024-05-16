@@ -139,6 +139,7 @@ const EditDancer = () => {
                 type="checkbox"
                 value={danceStyleOption}
                 onChange={handleCheckboxChange}
+                checked={formValues.danceStyles.includes(danceStyleOption)}
               />
               <label
                 htmlFor={danceStyleOption}
