@@ -70,7 +70,13 @@ const DancersTable = ({ data }) => {
               <button
                 key={uniqueLocation}
                 onClick={() =>
-                  setLocationsToShow([...locationsToShow, uniqueLocation])
+                  locationsToShow.includes(uniqueLocation)
+                    ? setLocationsToShow(
+                        locationsToShow.filter(
+                          (item) => !(item === uniqueLocation)
+                        )
+                      )
+                    : setLocationsToShow([...locationsToShow, uniqueLocation])
                 }
                 className={`py-2 px-4 rounded-full transition-colors ${
                   locationsToShow.includes(uniqueLocation)
