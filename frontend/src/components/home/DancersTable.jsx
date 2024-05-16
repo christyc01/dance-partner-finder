@@ -110,7 +110,16 @@ const DancersTable = ({ data }) => {
               <button
                 key={uniqueDanceStyle}
                 onClick={() =>
-                  setDanceStylesToShow([...danceStylesToShow, uniqueDanceStyle])
+                  danceStylesToShow.includes(uniqueDanceStyle)
+                    ? setDanceStylesToShow(
+                        danceStylesToShow.filter(
+                          (item) => !(item === uniqueDanceStyle)
+                        )
+                      )
+                    : setDanceStylesToShow([
+                        ...danceStylesToShow,
+                        uniqueDanceStyle,
+                      ])
                 }
                 className={`py-2 px-4 rounded-full transition-colors ${
                   danceStylesToShow.includes(uniqueDanceStyle)
