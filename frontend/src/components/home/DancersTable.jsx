@@ -115,16 +115,13 @@ const DancersTable = ({ data }) => {
       <table className="w-full border-separate border-spacing-2 table-fixed">
         <thead>
           <tr className="bg-green-200">
-            <th className="border border-green-300 rounded-md p-2 w-1/12">
-              No
-            </th>
             <th className="border border-green-300 rounded-md p-2 w-3/12">
               Name
             </th>
             <th className="border border-green-300 rounded-md p-2 max-md:hidden w-3/12">
               Location
             </th>
-            <th className="border border-green-300 rounded-md p-2 max-md:hidden w-3/12">
+            <th className="border border-green-300 rounded-md p-2 max-md:hidden w-4/12">
               Dance Styles
             </th>
             <th className="border border-green-300 rounded-md p-2 w-2/12">
@@ -133,18 +130,15 @@ const DancersTable = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {dataToShow.map((dancer, index) => (
+          {dataToShow.map((dancer) => (
             <tr key={dancer._id} className="h-8 bg-green-50">
-              <td className="border border-green-200 rounded-md text-center p-2 w-1/12">
-                {index + 1}
-              </td>
               <td className="border border-green-200 rounded-md p-2 w-3/12">
                 {dancer.name}
               </td>
               <td className="border border-green-200 rounded-md p-2 w-3/12">
                 {dancer.location}
               </td>
-              <td className="border border-green-200 rounded-md p-2 w-3/12">
+              <td className="border border-green-200 rounded-md p-2 w-4/12">
                 <div className="flex flex-wrap gap-2">
                   {dancer?.danceStyles?.map((danceStyle) => (
                     <div
