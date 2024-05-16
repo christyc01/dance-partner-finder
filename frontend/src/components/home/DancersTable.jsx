@@ -63,7 +63,7 @@ const DancersTable = ({ data }) => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setLocationToShow('')}
-              className={`py-2 px-4 rounded-full ${
+              className={`py-2 px-4 rounded-full transition-colors ${
                 !locationToShow
                   ? 'bg-green-500 text-white'
                   : 'bg-green-200 text-green-700'
@@ -75,7 +75,7 @@ const DancersTable = ({ data }) => {
               <button
                 key={uniqueLocation}
                 onClick={() => setLocationToShow(uniqueLocation)}
-                className={`py-2 px-4 rounded-full ${
+                className={`py-2 px-4 rounded-full transition-colors ${
                   uniqueLocation === locationToShow
                     ? 'bg-green-500 text-white'
                     : 'bg-green-200 text-green-700'
@@ -93,7 +93,7 @@ const DancersTable = ({ data }) => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setDanceStyleToShow('')}
-              className={`py-2 px-4 rounded-full ${
+              className={`py-2 px-4 rounded-full transition-colors ${
                 !danceStyleToShow
                   ? 'bg-green-500 text-white'
                   : 'bg-green-200 text-green-700'
@@ -105,7 +105,7 @@ const DancersTable = ({ data }) => {
               <button
                 key={uniqueDanceStyle}
                 onClick={() => setDanceStyleToShow(uniqueDanceStyle)}
-                className={`py-2 px-4 rounded-full ${
+                className={`py-2 px-4 rounded-full transition-colors ${
                   uniqueDanceStyle === danceStyleToShow
                     ? 'bg-green-500 text-white'
                     : 'bg-green-200 text-green-700'
