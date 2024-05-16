@@ -34,21 +34,16 @@ const DancersTable = ({ data }) => {
 
   // Set data to show based on filtered locations/dance styles
   useEffect(() => {
-    console.log('Set data to show based on filtered locations/dance styles');
     let filteredData = data;
     if (locationToShow) {
-      console.log('location to show');
       filteredData = filteredData.filter(
         (item) => item.location === locationToShow
       );
-      console.log('filteredData:', filteredData);
     }
     if (danceStyleToShow) {
-      console.log('dance style to show');
       filteredData = filteredData.filter((item) =>
         item.danceStyles.includes(danceStyleToShow)
       );
-      console.log('filteredData:', filteredData);
     }
     setDataToShow(filteredData);
   }, [locationToShow, danceStyleToShow, data]);
