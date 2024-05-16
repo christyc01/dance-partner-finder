@@ -61,7 +61,7 @@ const DancersTable = ({ data }) => {
             Filter by Location
           </h3>
           <div className="flex flex-wrap gap-2">
-            <p
+            <button
               onClick={() => {
                 setLocationToShow('');
               }}
@@ -70,10 +70,10 @@ const DancersTable = ({ data }) => {
               }`}
             >
               View all dancers (locations)
-            </p>
+            </button>
             {allUniqueLocationsArray &&
               allUniqueLocationsArray.map((uniqueLocation) => (
-                <p
+                <button
                   key={uniqueLocation}
                   onClick={() => {
                     setLocationToShow(uniqueLocation);
@@ -83,7 +83,7 @@ const DancersTable = ({ data }) => {
                   }`}
                 >
                   View {uniqueLocation} dancers
-                </p>
+                </button>
               ))}
           </div>
         </div>
@@ -92,7 +92,7 @@ const DancersTable = ({ data }) => {
             Filter by Dance Style
           </h3>
           <div className="flex flex-wrap gap-2">
-            <p
+            <button
               onClick={() => {
                 setDanceStyleToShow('');
               }}
@@ -101,10 +101,10 @@ const DancersTable = ({ data }) => {
               }`}
             >
               View all dancers (dance styles)
-            </p>
+            </button>
             {allUniqueDanceStylesArray &&
               allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
-                <p
+                <button
                   key={uniqueDanceStyle}
                   onClick={() => {
                     setDanceStyleToShow(uniqueDanceStyle);
@@ -114,7 +114,7 @@ const DancersTable = ({ data }) => {
                   }`}
                 >
                   View {uniqueDanceStyle} dancers
-                </p>
+                </button>
               ))}
           </div>
         </div>
