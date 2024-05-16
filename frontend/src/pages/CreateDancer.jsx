@@ -82,17 +82,17 @@ const CreateDancer = () => {
       {loading ? <Spinner /> : ''}
       <div className="flex flex-col w-full items-center">
         <div className="w-96">
-          <h1 className="text-2xl font-bold mb-2 text-green-600">
+          <h1 className="text-2xl font-bold mb-2 text-emerald-600">
             Create Dancer
           </h1>
           <form
             onSubmit={createDancer}
-            className="flex flex-col border-2  bg-green-200 border-green-300 rounded-xl p-6"
+            className="flex flex-col border-2  bg-emerald-200 border-emerald-300 rounded-xl p-6"
           >
             <div className="my-4">
               <label
                 htmlFor="name"
-                className="text-xl mr-4 text-green-600 font-bold"
+                className="text-xl mr-4 text-emerald-600 font-bold"
               >
                 Name:
               </label>
@@ -102,13 +102,13 @@ const CreateDancer = () => {
                 type="text"
                 value={formValues.name}
                 onChange={handleChange}
-                className="border-2 border-green-200 px-4 py-2 w-full"
+                className="border-2 border-emerald-200 px-4 py-2 w-full"
               />
             </div>
             <div className="my-4">
               <label
                 htmlFor="location"
-                className="text-xl mr-4 text-green-600 font-bold"
+                className="text-xl mr-4 text-emerald-600 font-bold"
               >
                 Location:
               </label>
@@ -118,14 +118,14 @@ const CreateDancer = () => {
                 type="text"
                 value={formValues.location}
                 onChange={handleChange}
-                className="border-2 border-green-200 px-4 py-2 w-full"
+                className="border-2 border-emerald-200 px-4 py-2 w-full"
               />
             </div>
 
             <div className="my-4">
               <label
                 htmlFor="location"
-                className="text-xl mr-4 text-green-600 font-bold"
+                className="text-xl mr-4 text-emerald-600 font-bold"
               >
                 Select dance styles:
               </label>
@@ -140,7 +140,7 @@ const CreateDancer = () => {
                   />
                   <label
                     htmlFor={danceStyleOption}
-                    className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-green-500 text-green-600 peer-checked/checkedField:bg-green-500 peer-checked/checkedField:text-white"
+                    className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-emerald-500 text-emerald-600 peer-checked/checkedField:bg-emerald-500 peer-checked/checkedField:text-white"
                   >
                     {danceStyleOption.slice(0, 1).toUpperCase()}
                     {danceStyleOption.slice(1)}
@@ -150,7 +150,7 @@ const CreateDancer = () => {
             </div>
             <button
               type="submit"
-              className="p-2 bg-green-800 text-white m-8 rounded-xl transition-colors"
+              className="p-2 bg-emerald-800 text-white m-8 rounded-xl transition-colors"
             >
               Submit
             </button>

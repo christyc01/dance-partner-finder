@@ -39,7 +39,7 @@ const DancerSingleCard = ({ dancer }) => {
           onClick={() => setShowModal(true)}
         />
         <Link to={`/dancers/details/${dancer._id}`}>
-          <BsInfoCircle className="text-2xl text-green-800" />
+          <BsInfoCircle className="text-2xl text-emerald-800" />
         </Link>
         <Link to={`/dancers/edit/${dancer._id}`}>
           <AiOutlineEdit className="text-2xl text-yellow-600" />
