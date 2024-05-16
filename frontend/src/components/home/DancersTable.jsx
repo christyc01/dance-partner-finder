@@ -119,47 +119,60 @@ const DancersTable = ({ data }) => {
           </div>
         </div>
       </div>
-      <table className="w-full border-separate border-spacing-2">
+      <table className="w-full border-separate border-spacing-2 table-fixed">
         <thead>
-          <tr>
-            <th className="border border-slate-600 rounded-md">No</th>
-            <th className="border border-slate-600 rounded-md">Name</th>
-            <th className="border border-slate-600 rounded-md max-md:hidden">
+          <tr className="bg-green-200">
+            <th className="border border-green-300 rounded-md p-2 w-1/12">
+              No
+            </th>
+            <th className="border border-green-300 rounded-md p-2 w-3/12">
+              Name
+            </th>
+            <th className="border border-green-300 rounded-md p-2 max-md:hidden w-3/12">
               Location
             </th>
-            <th className="border border-slate-600 rounded-md max-md:hidden">
+            <th className="border border-green-300 rounded-md p-2 max-md:hidden w-3/12">
               Dance Styles
             </th>
-            <th className="border border-slate-600 rounded-md">Operations</th>
+            <th className="border border-green-300 rounded-md p-2 w-2/12">
+              Operations
+            </th>
           </tr>
         </thead>
         <tbody>
           {dataToShow.map((dancer, index) => (
-            <tr key={dancer._id} className="h-8">
-              <td className="border border-slate-700 rounded-md text-center">
+            <tr key={dancer._id} className="h-8 bg-green-50">
+              <td className="border border-green-200 rounded-md text-center p-2 w-1/12">
                 {index + 1}
               </td>
-              <td>{dancer.name}</td>
-              <td>{dancer.location}</td>
-              <td>
-                <div className="flex">
+              <td className="border border-green-200 rounded-md p-2 w-3/12">
+                {dancer.name}
+              </td>
+              <td className="border border-green-200 rounded-md p-2 w-3/12">
+                {dancer.location}
+              </td>
+              <td className="border border-green-200 rounded-md p-2 w-3/12">
+                <div className="flex flex-wrap gap-2">
                   {dancer?.danceStyles?.map((danceStyle) => (
-                    <div key={danceStyle} className="bg-red-300 p-3 m-3">
+                    <div
+                      key={danceStyle}
+                      className="bg-green-300 p-2 rounded-lg"
+                    >
                       {danceStyle}
                     </div>
                   ))}
                 </div>
               </td>
-              <td className="border border-slate-700 rounded-md text-center">
+              <td className="border border-green-200 rounded-md text-center p-2 w-2/12">
                 <div className="flex justify-center gap-x-4">
                   <Link to={`/dancers/details/${dancer._id}`}>
-                    <BsInfoCircle className="text-2xl text-green-800" />
+                    <BsInfoCircle className="text-2xl text-green-700 hover:text-green-900" />
                   </Link>
                   <Link to={`/dancers/edit/${dancer._id}`}>
-                    <AiOutlineEdit className="text-2xl text-yellow-600" />
+                    <AiOutlineEdit className="text-2xl text-green-700 hover:text-green-900" />
                   </Link>
                   <Link to={`/dancers/delete/${dancer._id}`}>
-                    <MdOutlineDelete className="text-2xl text-red-600" />
+                    <MdOutlineDelete className="text-2xl text-green-700 hover:text-green-900" />
                   </Link>
                 </div>
               </td>
