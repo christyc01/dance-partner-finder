@@ -9,7 +9,7 @@ const DancersTable = ({ data }) => {
   const [dataToShow, setDataToShow] = useState(data);
   const [locationsToShow, setLocationsToShow] = useState([]);
   const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
-  const [danceStyleToShow, setDanceStyleToShow] = useState();
+  const [danceStylesToShow, setDanceStylesToShow] = useState([]);
   const [allUniqueDanceStylesArray, setAllUniqueDanceStylesArray] = useState(
     []
   );
@@ -40,13 +40,15 @@ const DancersTable = ({ data }) => {
         locationsToShow.includes(item.location)
       );
     }
-    if (danceStyleToShow) {
+    if (danceStylesToShow.length) {
       filteredData = filteredData.filter((item) =>
-        item.danceStyles.includes(danceStyleToShow)
+        danceStylesToShow.some((danceStyle) =>
+          item.danceStyles.includes(danceStyle)
+        )
       );
     }
     setDataToShow(filteredData);
-  }, [locationsToShow, danceStyleToShow, data]);
+  }, [locationsToShow, danceStylesToShow, data]);
 
   return (
     <div className="p-4">
@@ -95,9 +97,9 @@ const DancersTable = ({ data }) => {
           </h3>
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => setDanceStyleToShow('')}
+              onClick={() => setDanceStylesToShow([])}
               className={`py-2 px-4 rounded-full transition-colors ${
-                !danceStyleToShow
+                !danceStylesToShow.length
                   ? 'bg-green-500 text-white'
                   : 'bg-green-200 text-green-700'
               }`}
@@ -107,9 +109,11 @@ const DancersTable = ({ data }) => {
             {allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
               <button
                 key={uniqueDanceStyle}
-                onClick={() => setDanceStyleToShow(uniqueDanceStyle)}
+                onClick={() =>
+                  setDanceStylesToShow([...danceStylesToShow, uniqueDanceStyle])
+                }
                 className={`py-2 px-4 rounded-full transition-colors ${
-                  uniqueDanceStyle === danceStyleToShow
+                  danceStylesToShow.includes(uniqueDanceStyle)
                     ? 'bg-green-500 text-white'
                     : 'bg-green-200 text-green-700'
                 }`}
