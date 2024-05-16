@@ -9,12 +9,20 @@ const EditDancer = () => {
   const [formValues, setFormValues] = useState({
     name: '',
     location: '',
-    // danceStyles: [],
+    danceStyles: [],
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const danceStyleOptions = [
+    'tango',
+    'waltz',
+    'foxtrot',
+    'bachata',
+    'salsa',
+    'swing',
+  ].sort();
 
   const handleEditDancer = (e) => {
     e.preventDefault();
@@ -22,7 +30,7 @@ const EditDancer = () => {
     const data = {
       name: formValues.name,
       location: formValues.location,
-      // danceStyles: formValues.danceStyles,
+      danceStyles: formValues.danceStyles,
     };
 
     setLoading(true);
@@ -51,6 +59,22 @@ const EditDancer = () => {
       [e.target.id]: e.target.value,
     };
     setFormValues(updatedValues);
+  };
+
+  const handleCheckboxChange = (e) => {
+    if (e.target.checked) {
+      setFormValues({
+        ...formValues,
+        danceStyles: [...formValues.danceStyles, e.target.value].sort(),
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        danceStyles: formValues.danceStyles
+          .filter((danceStyle) => danceStyle !== e.target.value)
+          .sort(),
+      });
+    }
   };
 
   useEffect(() => {
@@ -108,13 +132,23 @@ const EditDancer = () => {
           <label htmlFor="danceStyles" className="text-xl mr-4 text-gray-500">
             Dance styles:{' '}
           </label>
-          <input
-            type="number"
-            id="danceStyles"
-            value={formValues.danceStyles}
-            onChange={handleChange}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
-          />
+          {danceStyleOptions.map((danceStyleOption) => (
+            <div key={danceStyleOption}>
+              <input
+                id={danceStyleOption}
+                type="checkbox"
+                value={danceStyleOption}
+                onChange={handleCheckboxChange}
+              />
+              <label
+                htmlFor={danceStyleOption}
+                className="text-xl mr-4 text-gray-500"
+              >
+                {danceStyleOption.slice(0, 1).toUpperCase()}
+                {danceStyleOption.slice(1)}
+              </label>
+            </div>
+          ))}
         </div>
 
         <button type="submit" className="p-2 bg-sky-300 m-8">
