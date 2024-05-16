@@ -51,9 +51,9 @@ const DancersTable = ({ data }) => {
   }, [locationsToShow, danceStylesToShow, data]);
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between mb-6">
-        <div className="bg-white shadow-lg p-4 rounded-lg w-full mr-4">
+    <div className="p-0 md:p-4">
+      <div className="flex flex-col lg:flex-row justify-between mb-6">
+        <div className="bg-white shadow-lg p-4 rounded-lg w-full lg:w-1/2 mr-4">
           <h3 className="text-xl font-semibold mb-2 text-emerald-600">
             Filter by Location
           </h3>
@@ -91,7 +91,7 @@ const DancersTable = ({ data }) => {
             ))}
           </div>
         </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg w-full ml-4">
+        <div className="bg-white shadow-lg p-4 rounded-lg w-full  lg:w-1/2">
           <h3 className="text-xl font-semibold mb-2 text-emerald-600">
             Filter by Dance Style
           </h3>
@@ -133,16 +133,61 @@ const DancersTable = ({ data }) => {
           </div>
         </div>
       </div>
-      <table className="w-full border-separate border-spacing-2 table-fixed">
+
+      {/* SMALL SCREENS */}
+      <table className="md:hidden w-full border-separate table-fixed">
+        <tbody>
+          {dataToShow.map((dancer) => (
+            <tr key={dancer._id}>
+              <div className="mt-2 bg-emerald-50 flex justify-between">
+                <td className="p-2">{dancer.name}</td>
+                <td className="p-2">{dancer.location}</td>
+              </div>
+              <div className="bg-emerald-50">
+                <td className="p-2">
+                  <div className="flex flex-wrap gap-2">
+                    {dancer?.danceStyles?.map((danceStyle) => (
+                      <div
+                        key={danceStyle}
+                        className="bg-emerald-300 p-2 rounded-lg"
+                      >
+                        {danceStyle}
+                      </div>
+                    ))}
+                  </div>
+                </td>
+              </div>
+              <div className="mb-2 bg-emerald-50">
+                <td className="text-center p-2">
+                  <div className="flex justify-center gap-x-4">
+                    <Link to={`/dancers/details/${dancer._id}`}>
+                      <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/edit/${dancer._id}`}>
+                      <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/delete/${dancer._id}`}>
+                      <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                  </div>
+                </td>
+              </div>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* LARGE SCREENS */}
+      <table className="max-md:hidden w-full border-separate border-spacing-2 table-fixed">
         <thead>
           <tr className="bg-emerald-200">
             <th className="border border-emerald-300 rounded-md p-2 w-3/12">
               Name
             </th>
-            <th className="border border-emerald-300 rounded-md p-2 max-md:hidden w-3/12">
+            <th className="border border-emerald-300 rounded-md p-2 w-3/12">
               Location
             </th>
-            <th className="border border-emerald-300 rounded-md p-2 max-md:hidden w-4/12">
+            <th className="border border-emerald-300 rounded-md p-2 w-4/12">
               Dance Styles
             </th>
             <th className="border border-emerald-300 rounded-md p-2 w-2/12">
