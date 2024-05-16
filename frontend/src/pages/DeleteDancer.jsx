@@ -31,19 +31,25 @@ const DeleteDancer = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-white shadow-lg rounded-lg">
       <BackButton />
-      <h1 className="text-3xl my-4">Delete Dancer</h1>
-      {loading ? <Spinner /> : ''}
-      <div className="flex flex-col items-center border-2 border-sky-400 rounded-xl w-[600px] p-8 mx-auto">
-        <h3 className="text-2xl">Are you sure?</h3>
+      <div className="flex flex-col w-full items-center">
+        <div className="w-96">
+          <h1 className="text-2xl font-bold mb-2 text-green-600">
+            Delete Dancer
+          </h1>
+          {loading ? <Spinner /> : ''}
+          <div className="flex flex-col items-center border-2 border-green-500 rounded-xl w-[600px] p-8 mx-auto">
+            <h3 className="text-2xl text-green-600">Are you sure?</h3>
 
-        <button
-          className="p-4 bg-red-600 text-white m-8 w-full"
-          onClick={handleDelete}
-        >
-          Yep, delete it
-        </button>
+            <button
+              className="p-4 bg-green-800 text-white m-8 w-full rounded-md"
+              onClick={handleDelete}
+            >
+              Yep, delete them
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

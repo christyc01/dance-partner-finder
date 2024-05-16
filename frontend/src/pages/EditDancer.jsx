@@ -102,7 +102,7 @@ const EditDancer = () => {
       {loading ? <Spinner /> : ''}
       <form
         onSubmit={handleEditDancer}
-        className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto"
+        className="flex flex-col border-2 border-green-500 rounded-xl w-[600px] p-4 mx-auto"
       >
         <div className="my-4">
           <label htmlFor="name" className="text-xl mr-4 text-gray-500">
@@ -152,7 +152,7 @@ const EditDancer = () => {
           ))}
         </div>
 
-        <button type="submit" className="p-2 bg-sky-300 m-8">
+        <button type="submit" className="p-2 bg-green-500 text-white m-8">
           Edit
         </button>
       </form>

@@ -33,7 +33,7 @@ const ShowDancer = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4">
+        <div className="flex flex-col border-2 border-green-400 rounded-xl w-fit p-4">
           <div className="my-4">
             <span className="text-xl mr-4 text-gray-500">Id</span>
             <span>{dancer._id}</span>

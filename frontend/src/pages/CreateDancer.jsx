@@ -80,9 +80,9 @@ const CreateDancer = () => {
     <div className="p-4 bg-white shadow-lg rounded-lg">
       <BackButton />
       {loading ? <Spinner /> : ''}
-      <div className="flex  flex-col w-full items-center">
+      <div className="flex flex-col w-full items-center">
         <div className="w-96">
-          <h1 className="text-xl font-semibold mb-2 text-green-600">
+          <h1 className="text-2xl font-bold mb-2 text-green-600">
             Create Dancer
           </h1>
           <form

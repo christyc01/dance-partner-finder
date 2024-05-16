@@ -48,13 +48,13 @@ const Home = () => {
       <div className="flex justify-center items-center gap-x-4">
         <button
           onClick={() => setView('table')}
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          className="bg-green-300 hover:bg-green-500 px-4 py-1 rounded-lg"
         >
           Table
         </button>
         <button
           onClick={() => setView('card')}
-          className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg"
+          className="bg-green-300 hover:bg-green-500 px-4 py-1 rounded-lg"
         >
           Card
         </button>
@@ -62,7 +62,7 @@ const Home = () => {
       <div className="flex justify-between items-center">
         <h1 className="text-3xl my-8">Dancers List</h1>
         <Link to="/dancers/create">
-          <MdOutlineAddBox className="text-sky-800 text-4xl" />
+          <MdOutlineAddBox className="text-green-800 text-4xl" />
         </Link>
       </div>
       {loading ? (
