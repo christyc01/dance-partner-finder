@@ -62,29 +62,28 @@ const DancersTable = ({ data }) => {
           </h3>
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => {
-                setLocationToShow('');
-              }}
+              onClick={() => setLocationToShow('')}
               className={`py-2 px-4 rounded-full ${
-                !locationToShow && 'bg-pink-500'
+                !locationToShow
+                  ? 'bg-green-500 text-white'
+                  : 'bg-green-200 text-green-700'
               }`}
             >
-              View all dancers (locations)
+              View all
             </button>
-            {allUniqueLocationsArray &&
-              allUniqueLocationsArray.map((uniqueLocation) => (
-                <button
-                  key={uniqueLocation}
-                  onClick={() => {
-                    setLocationToShow(uniqueLocation);
-                  }}
-                  className={`py-2 px-4 rounded-full ${
-                    uniqueLocation === locationToShow && 'bg-pink-500'
-                  }`}
-                >
-                  View {uniqueLocation} dancers
-                </button>
-              ))}
+            {allUniqueLocationsArray.map((uniqueLocation) => (
+              <button
+                key={uniqueLocation}
+                onClick={() => setLocationToShow(uniqueLocation)}
+                className={`py-2 px-4 rounded-full ${
+                  uniqueLocation === locationToShow
+                    ? 'bg-green-500 text-white'
+                    : 'bg-green-200 text-green-700'
+                }`}
+              >
+                {uniqueLocation}
+              </button>
+            ))}
           </div>
         </div>
         <div className="bg-white shadow-lg p-4 rounded-lg w-full ml-4">
@@ -93,29 +92,28 @@ const DancersTable = ({ data }) => {
           </h3>
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => {
-                setDanceStyleToShow('');
-              }}
+              onClick={() => setDanceStyleToShow('')}
               className={`py-2 px-4 rounded-full ${
-                !danceStyleToShow && 'bg-pink-500'
+                !danceStyleToShow
+                  ? 'bg-green-500 text-white'
+                  : 'bg-green-200 text-green-700'
               }`}
             >
-              View all dancers (dance styles)
+              View all
             </button>
-            {allUniqueDanceStylesArray &&
-              allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
-                <button
-                  key={uniqueDanceStyle}
-                  onClick={() => {
-                    setDanceStyleToShow(uniqueDanceStyle);
-                  }}
-                  className={`py-2 px-4 rounded-full ${
-                    uniqueDanceStyle === danceStyleToShow && 'bg-pink-500'
-                  }`}
-                >
-                  View {uniqueDanceStyle} dancers
-                </button>
-              ))}
+            {allUniqueDanceStylesArray.map((uniqueDanceStyle) => (
+              <button
+                key={uniqueDanceStyle}
+                onClick={() => setDanceStyleToShow(uniqueDanceStyle)}
+                className={`py-2 px-4 rounded-full ${
+                  uniqueDanceStyle === danceStyleToShow
+                    ? 'bg-green-500 text-white'
+                    : 'bg-green-200 text-green-700'
+                }`}
+              >
+                {uniqueDanceStyle}
+              </button>
+            ))}
           </div>
         </div>
       </div>
