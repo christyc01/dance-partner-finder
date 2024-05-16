@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const DancersTable = ({ data }) => {
   const [dataToShow, setDataToShow] = useState(data);
-  const [locationToShow, setLocationToShow] = useState();
+  const [locationsToShow, setLocationsToShow] = useState([]);
   const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
   const [danceStyleToShow, setDanceStyleToShow] = useState();
   const [allUniqueDanceStylesArray, setAllUniqueDanceStylesArray] = useState(
@@ -35,9 +35,9 @@ const DancersTable = ({ data }) => {
   // Set data to show based on filtered locations/dance styles
   useEffect(() => {
     let filteredData = data;
-    if (locationToShow) {
-      filteredData = filteredData.filter(
-        (item) => item.location === locationToShow
+    if (locationsToShow.length) {
+      filteredData = filteredData.filter((item) =>
+        locationsToShow.includes(item.location)
       );
     }
     if (danceStyleToShow) {
@@ -46,7 +46,7 @@ const DancersTable = ({ data }) => {
       );
     }
     setDataToShow(filteredData);
-  }, [locationToShow, danceStyleToShow, data]);
+  }, [locationsToShow, danceStyleToShow, data]);
 
   return (
     <div className="p-4">
@@ -57,9 +57,9 @@ const DancersTable = ({ data }) => {
           </h3>
           <div className="flex flex-wrap gap-2">
             <button
-              onClick={() => setLocationToShow('')}
+              onClick={() => setLocationsToShow('')}
               className={`py-2 px-4 rounded-full transition-colors ${
-                !locationToShow
+                !locationsToShow.length
                   ? 'bg-green-500 text-white'
                   : 'bg-green-200 text-green-700'
               }`}
@@ -69,9 +69,11 @@ const DancersTable = ({ data }) => {
             {allUniqueLocationsArray.map((uniqueLocation) => (
               <button
                 key={uniqueLocation}
-                onClick={() => setLocationToShow(uniqueLocation)}
+                onClick={() =>
+                  setLocationsToShow([...locationsToShow, uniqueLocation])
+                }
                 className={`py-2 px-4 rounded-full transition-colors ${
-                  uniqueLocation === locationToShow
+                  locationsToShow.includes(uniqueLocation)
                     ? 'bg-green-500 text-white'
                     : 'bg-green-200 text-green-700'
                 }`}
