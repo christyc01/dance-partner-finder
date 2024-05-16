@@ -26,8 +26,6 @@ const ShowDancer = () => {
     getData();
   }, []);
 
-  console.log(dancer);
-
   return (
     <div className="p-4">
       <BackButton />
@@ -52,7 +50,7 @@ const ShowDancer = () => {
             <span className="text-xl mr-4 text-gray-500">Dance styles</span>
             <span className="flex">
               {dancer?.danceStyles?.map((danceStyle) => (
-                <div key={danceStyle._id} className="bg-red-300 p-3 m-3">
+                <div key={danceStyle} className="bg-red-300 p-3 m-3">
                   {danceStyle}
                 </div>
               ))}
