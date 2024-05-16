@@ -87,7 +87,7 @@ const CreateDancer = () => {
           </h1>
           <form
             onSubmit={createDancer}
-            className="flex flex-col border-2  bg-green-200 border-green-300 rounded-md p-6"
+            className="flex flex-col border-2  bg-green-200 border-green-300 rounded-xl p-6"
           >
             <div className="my-4">
               <label
@@ -136,11 +136,11 @@ const CreateDancer = () => {
                     type="checkbox"
                     value={danceStyleOption}
                     onChange={handleCheckboxChange}
-                    className="hidden peer/draft"
+                    className="hidden peer/checkedField"
                   />
                   <label
                     htmlFor={danceStyleOption}
-                    className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-green-500 text-green-600 peer-checked/draft:bg-green-500 peer-checked/draft:text-white"
+                    className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-green-500 text-green-600 peer-checked/checkedField:bg-green-500 peer-checked/checkedField:text-white"
                   >
                     {danceStyleOption.slice(0, 1).toUpperCase()}
                     {danceStyleOption.slice(1)}
@@ -150,7 +150,7 @@ const CreateDancer = () => {
             </div>
             <button
               type="submit"
-              className="p-2 bg-green-500 text-white m-8 rounded-full transition-colors"
+              className="p-2 bg-green-800 text-white m-8 rounded-xl transition-colors"
             >
               Submit
             </button>

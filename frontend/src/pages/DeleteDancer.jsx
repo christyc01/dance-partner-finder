@@ -39,11 +39,11 @@ const DeleteDancer = () => {
             Delete Dancer
           </h1>
           {loading ? <Spinner /> : ''}
-          <div className="flex flex-col items-center border-2 border-green-500 rounded-xl w-[600px] p-8 mx-auto">
-            <h3 className="text-2xl text-green-600">Are you sure?</h3>
+          <div className="flex flex-col border-2  bg-green-200 border-green-300 rounded-xl p-6">
+            <h3 className="text-2xl text-green-600 font-bold">Are you sure?</h3>
 
             <button
-              className="p-4 bg-green-800 text-white m-8 w-full rounded-md"
+              className="p-2 bg-green-800 text-white m-8 rounded-xl transition-colors"
               onClick={handleDelete}
             >
               Yep, delete them

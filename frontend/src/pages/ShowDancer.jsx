@@ -27,45 +27,66 @@ const ShowDancer = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-white shadow-lg rounded-lg">
       <BackButton />
-      <h1 className="text-3xl my-4">Show Dancer</h1>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className="flex flex-col border-2 border-green-400 rounded-xl w-fit p-4">
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Id</span>
-            <span>{dancer._id}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Name</span>
-            <span>{dancer.name}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Location</span>
-            <span>{dancer.location}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Dance styles</span>
-            <span className="flex">
-              {dancer?.danceStyles?.map((danceStyle) => (
-                <div key={danceStyle} className="bg-red-300 p-3 m-3">
-                  {danceStyle}
-                </div>
-              ))}
-            </span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Create Time</span>
-            <span>{new Date(dancer.createdAt).toString()}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Last Update Time</span>
-            <span>{new Date(dancer.updatedAt).toString()}</span>
-          </div>
+      <div className="flex flex-col w-full items-center">
+        <div className="w-96">
+          <h1 className="text-2xl font-bold mb-2 text-green-600">
+            Show Dancer
+          </h1>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className="flex flex-col border-2 bg-green-200 border-green-300 rounded-xl p-6">
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Id
+                </span>
+                <span>{dancer._id}</span>
+              </div>
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Name
+                </span>
+                <span>{dancer.name}</span>
+              </div>
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Location
+                </span>
+                <span>{dancer.location}</span>
+              </div>
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Dance styles
+                </span>
+                <span className="flex">
+                  {dancer?.danceStyles?.map((danceStyle) => (
+                    <div
+                      key={danceStyle}
+                      className="text-xl mr-4 py-2 px-4 rounded-full transition-colors  bg-green-500 text-white"
+                    >
+                      {danceStyle}
+                    </div>
+                  ))}
+                </span>
+              </div>
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Create Time
+                </span>
+                <span>{new Date(dancer.createdAt).toString()}</span>
+              </div>
+              <div className="my-4">
+                <span className="text-xl mr-4 text-green-600 font-bold">
+                  Last Update Time
+                </span>
+                <span>{new Date(dancer.updatedAt).toString()}</span>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
