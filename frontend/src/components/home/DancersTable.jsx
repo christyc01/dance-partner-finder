@@ -91,7 +91,7 @@ const DancersTable = ({ data }) => {
             ))}
           </div>
         </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg w-full  lg:w-1/2">
+        <div className="bg-white shadow-lg p-4 rounded-lg w-full lg:w-1/2">
           <h3 className="text-xl font-semibold mb-2 text-emerald-600">
             Filter by Dance Style
           </h3>
@@ -209,7 +209,7 @@ const DancersTable = ({ data }) => {
                   {dancer?.danceStyles?.map((danceStyle) => (
                     <div
                       key={danceStyle}
-                      className="bg-emerald-300 p-2 rounded-lg"
+                      className="bg-emerald-500 text-white p-2 rounded-full"
                     >
                       {danceStyle}
                     </div>

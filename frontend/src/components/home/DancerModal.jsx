@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from 'react-icons/ai';
-import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiUserCircle } from 'react-icons/bi';
+import { GrLocation } from 'react-icons/gr';
 
 const DancerModal = ({ dancer, closeModal }) => {
   return (
@@ -22,7 +22,7 @@ const DancerModal = ({ dancer, closeModal }) => {
             {dancer?.danceStyles?.map((danceStyle) => (
               <div
                 key={danceStyle._id}
-                className="bg-emerald-500 rounded-full p-3 m-3"
+                className="bg-emerald-500 text-white rounded-full p-3 m-3"
               >
                 {danceStyle}
               </div>
@@ -31,11 +31,11 @@ const DancerModal = ({ dancer, closeModal }) => {
         </h2>
         <h4 className="my-2 text-gray-500">{dancer._id}</h4>
         <div className="flex justify-start items-center gap-x-2">
-          <PiBookOpenTextLight className="text-red-300 text-2xl" />
+          <BiUserCircle className="text-black text-2xl" />
           <h2 className="my-1">{dancer.name}</h2>
         </div>
         <div className="flex justify-start items-center gap-x-2">
-          <BiUserCircle className="text-red-300 text-2xl" />
+          <GrLocation className="text-black-300 text-2xl" />
           <h2 className="my-1">{dancer.location}</h2>
         </div>
         <p className="mt-4">Anything You want to show</p>

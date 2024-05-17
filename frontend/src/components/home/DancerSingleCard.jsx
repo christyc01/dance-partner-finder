@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import { AiOutlineEdit } from 'react-icons/ai';
-import { PiBookOpenTextLight } from 'react-icons/pi';
 import { BiShow, BiUserCircle } from 'react-icons/bi';
 import { BsInfoCircle } from 'react-icons/bs';
+import { GrLocation } from 'react-icons/gr';
 import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -18,12 +18,12 @@ const DancerSingleCard = ({ dancer }) => {
       className="border-2 border-emerald-300 bg-emerald-200 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl"
     >
       <h4 className="my-2 text-gray-500">{dancer._id}</h4>
-      <div className="flex justify-start items-center gap-x-2">
-        <PiBookOpenTextLight className="text-red-300 text-2xl" />
+      <div className="flex justify-start items-center gap-x-2 text-emerald-900">
+        <BiUserCircle className="text-2xl" />
         <h2 className="my-1">{dancer.name}</h2>
       </div>
-      <div className="flex justify-start items-center gap-x-2">
-        <BiUserCircle className="text-red-300 text-2xl" />
+      <div className="flex justify-start items-center gap-x-2 text-emerald-900 ">
+        <GrLocation className="text-2xl" />
         <h2 className="my-1">{dancer.location}</h2>
       </div>
       <div className="flex flex-wrap">
