@@ -15,12 +15,15 @@ const DancerModal = ({ dancer, closeModal }) => {
       >
         <AiOutlineClose
           onClick={closeModal}
-          className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
+          className="absolute right-6 top-6 text-3xl text-emerald-600 cursor-pointer"
         />
         <h2 className="w-fit px-4 py-1 flex">
-          <span>
+          <span className="flex flex-wrap">
             {dancer?.danceStyles?.map((danceStyle) => (
-              <div key={danceStyle._id} className="bg-red-300 p-3 m-3">
+              <div
+                key={danceStyle._id}
+                className="bg-emerald-500 rounded-full p-3 m-3"
+              >
                 {danceStyle}
               </div>
             ))}
