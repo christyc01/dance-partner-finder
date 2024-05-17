@@ -29,7 +29,7 @@ const DancerSingleCard = ({ dancer, showOperations }) => {
       <div className="flex flex-wrap">
         {dancer?.danceStyles?.map((danceStyle) => (
           <div
-            key={danceStyle._id}
+            key={danceStyle}
             className="bg-emerald-500 text-white rounded-full p-3 m-3"
           >
             {danceStyle}

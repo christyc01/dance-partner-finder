@@ -139,24 +139,22 @@ const DancersTable = ({ data, showOperations }) => {
         <tbody>
           {dataToShow.map((dancer) => (
             <tr key={dancer._id}>
-              <div className="mt-2 bg-emerald-50 flex justify-between">
-                <td className="p-2">{dancer.name}</td>
-                <td className="p-2">{dancer.location}</td>
-              </div>
-              <div className="bg-emerald-50">
-                <td className="p-2">
-                  <div className="flex flex-wrap gap-2">
-                    {dancer?.danceStyles?.map((danceStyle) => (
-                      <div
-                        key={danceStyle}
-                        className="bg-emerald-300 p-2 rounded-lg"
-                      >
-                        {danceStyle}
-                      </div>
-                    ))}
-                  </div>
-                </td>
-              </div>
+              <td className="mt-2 bg-emerald-50 flex justify-between">
+                <div className="p-2">{dancer.name}</div>
+                <div className="p-2">{dancer.location}</div>
+              </td>
+              <td className="p-2 bg-emerald-50">
+                <div className="flex flex-wrap gap-2">
+                  {dancer?.danceStyles?.map((danceStyle) => (
+                    <div
+                      key={danceStyle}
+                      className="bg-emerald-300 p-2 rounded-lg"
+                    >
+                      {danceStyle}
+                    </div>
+                  ))}
+                </div>
+              </td>
               {showOperations && (
                 <div className="mb-2 bg-emerald-50">
                   <td className="text-center p-2">
