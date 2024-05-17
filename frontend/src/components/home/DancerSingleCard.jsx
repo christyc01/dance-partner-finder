@@ -6,12 +6,14 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { GrLocation } from 'react-icons/gr';
 import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import DancerModal from './DancerModal';
 
-const DancerSingleCard = ({ dancer, showOperations }) => {
-  const [showModal, setShowModal] = useState(false);
-
+const DancerSingleCard = ({
+  dancer,
+  showOperations,
+  showModal,
+  setShowModal,
+}) => {
   return (
     <div
       key={dancer._id}

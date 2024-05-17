@@ -13,6 +13,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState('table');
   const [showOperations, setShowOperations] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -64,9 +65,19 @@ const Home = () => {
       {loading ? (
         <Spinner />
       ) : view === 'card' ? (
-        <DancersCard data={data} showOperations={showOperations} />
+        <DancersCard
+          data={data}
+          showOperations={showOperations}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       ) : (
-        <DancersTable data={data} showOperations={showOperations} />
+        <DancersTable
+          data={data}
+          showOperations={showOperations}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       )}
     </div>
   );

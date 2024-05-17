@@ -5,8 +5,9 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Filters from '../Filters';
+import DancerModal from './DancerModal';
 
-const DancersTable = ({ data, showOperations }) => {
+const DancersTable = ({ data, showOperations, showModal, setShowModal }) => {
   const [dataToShow, setDataToShow] = useState(data);
   const [locationsToShow, setLocationsToShow] = useState([]);
   const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
@@ -14,6 +15,7 @@ const DancersTable = ({ data, showOperations }) => {
   const [allUniqueDanceStylesArray, setAllUniqueDanceStylesArray] = useState(
     []
   );
+  const [selectedDancer, setSelectedDancer] = useState({});
 
   // Get all & unique locations
   useEffect(() => {
@@ -66,7 +68,15 @@ const DancersTable = ({ data, showOperations }) => {
       <table className="md:hidden w-full border-separate table-fixed">
         <tbody>
           {dataToShow.map((dancer) => (
-            <tr key={dancer._id} className="flex flex-col">
+            <tr
+              key={dancer._id}
+              className="flex flex-col"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowModal(true);
+                setSelectedDancer(dancer);
+              }}
+            >
               <td className="mt-2 bg-emerald-50 flex justify-between">
                 <div className="p-2">{dancer.name}</div>
                 <div className="p-2">{dancer.location}</div>
@@ -125,7 +135,15 @@ const DancersTable = ({ data, showOperations }) => {
         </thead>
         <tbody>
           {dataToShow.map((dancer) => (
-            <tr key={dancer._id} className="h-8 bg-emerald-50">
+            <tr
+              key={dancer._id}
+              className="h-8 bg-emerald-50"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowModal(true);
+                setSelectedDancer(dancer);
+              }}
+            >
               <td className="border border-emerald-200 rounded-md p-2 w-3/12">
                 {dancer.name}
               </td>
@@ -163,6 +181,12 @@ const DancersTable = ({ data, showOperations }) => {
           ))}
         </tbody>
       </table>
+      {showModal && (
+        <DancerModal
+          dancer={selectedDancer}
+          closeModal={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };
