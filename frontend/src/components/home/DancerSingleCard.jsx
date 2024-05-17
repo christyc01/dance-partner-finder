@@ -6,13 +6,12 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { GrLocation } from 'react-icons/gr';
 import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import DancerModal from './DancerModal';
 
 const DancerSingleCard = ({
   dancer,
   showOperations,
-  showModal,
   setShowModal,
+  setSelectedDancer,
 }) => {
   return (
     <div className="border-2 border-emerald-300 bg-emerald-200 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl">
@@ -20,9 +19,9 @@ const DancerSingleCard = ({
         onClick={(e) => {
           e.stopPropagation();
           setShowModal(true);
+          setSelectedDancer(() => dancer);
         }}
       >
-        <h4 className="my-2 text-gray-500">{dancer._id}</h4>
         <div className="flex justify-start items-center gap-x-2 text-emerald-900">
           <BiUserCircle className="text-2xl" />
           <h2 className="my-1">{dancer.name}</h2>
@@ -55,9 +54,6 @@ const DancerSingleCard = ({
           </div>
         )}
       </div>
-      {showModal && (
-        <DancerModal dancer={dancer} closeModal={() => setShowModal(false)} />
-      )}
     </div>
   );
 };
