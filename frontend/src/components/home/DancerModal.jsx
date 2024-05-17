@@ -29,7 +29,6 @@ const DancerModal = ({ dancer, closeModal }) => {
             ))}
           </span>
         </h2>
-        <h4 className="my-2 text-gray-500">{dancer._id}</h4>
         <div className="flex justify-start items-center gap-x-2">
           <BiUserCircle className="text-black text-2xl" />
           <h2 className="my-1">{dancer.name}</h2>
