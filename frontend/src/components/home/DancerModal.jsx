@@ -21,7 +21,7 @@ const DancerModal = ({ dancer, closeModal }) => {
           <span className="flex flex-wrap">
             {dancer?.danceStyles?.map((danceStyle) => (
               <div
-                key={danceStyle._id}
+                key={danceStyle}
                 className="bg-emerald-500 text-white rounded-full p-3 m-3"
               >
                 {danceStyle}
@@ -38,7 +38,7 @@ const DancerModal = ({ dancer, closeModal }) => {
           <GrLocation className="text-black-300 text-2xl" />
           <h2 className="my-1">{dancer.location}</h2>
         </div>
-        <p className="mt-4">Anything You want to show</p>
+        <p className="mt-4">Random details to come...</p>
         <p className="my-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quia
           voluptatum sint. Nisi impedit libero eveniet cum vitae qui expedita
