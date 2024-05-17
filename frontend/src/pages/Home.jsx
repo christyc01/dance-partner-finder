@@ -51,22 +51,26 @@ const Home = () => {
         showOperations={showOperations}
         setShowOperations={setShowOperations}
       />
-      <div className="flex justify-center items-center gap-x-4">
+      <div className="flex justify-center items-center">
         <button
           onClick={() => setView('table')}
-          className="bg-emerald-300 hover:bg-emerald-500 px-4 py-1 rounded-lg"
+          className={`hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
+            view === 'table' ? 'bg-emerald-500' : 'bg-emerald-300'
+          } `}
         >
-          Table
+          Table View
         </button>
         <button
           onClick={() => setView('card')}
-          className="bg-emerald-300 hover:bg-emerald-500 px-4 py-1 rounded-lg"
+          className={`hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
+            view === 'card' ? 'bg-emerald-500' : 'bg-emerald-300'
+          }`}
         >
-          Card
+          Card View
         </button>
       </div>
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl my-8">Dancers List</h1>
+      <div className="flex justify-between items-center mx-4">
+        <h1 className="text-3xl my-8">Dancers</h1>
         <Link to="/dancers/create">
           <MdOutlineAddBox className="text-emerald-800 text-4xl" />
         </Link>
