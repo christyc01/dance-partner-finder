@@ -5,11 +5,13 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import Spinner from '../components/Spinner';
 import DancersCard from '../components/home/DancersCard';
 import DancersTable from '../components/home/DancersTable';
+import AdminToggle from '../components/AdminToggle';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState('table');
+  const [showOperations, setShowOperations] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -45,6 +47,10 @@ const Home = () => {
 
   return (
     <div className="p-0 md:p-4">
+      <AdminToggle
+        showOperations={showOperations}
+        setShowOperations={setShowOperations}
+      />
       <div className="flex justify-center items-center gap-x-4">
         <button
           onClick={() => setView('table')}
@@ -68,9 +74,9 @@ const Home = () => {
       {loading ? (
         <Spinner />
       ) : view === 'card' ? (
-        <DancersCard data={data} />
+        <DancersCard data={data} showOperations={showOperations} />
       ) : (
-        <DancersTable data={data} />
+        <DancersTable data={data} showOperations={showOperations} />
       )}
     </div>
   );

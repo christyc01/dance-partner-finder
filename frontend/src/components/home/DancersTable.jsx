@@ -5,7 +5,7 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const DancersTable = ({ data }) => {
+const DancersTable = ({ data, showOperations }) => {
   const [dataToShow, setDataToShow] = useState(data);
   const [locationsToShow, setLocationsToShow] = useState([]);
   const [allUniqueLocationsArray, setAllUniqueLocationsArray] = useState([]);
@@ -157,21 +157,23 @@ const DancersTable = ({ data }) => {
                   </div>
                 </td>
               </div>
-              <div className="mb-2 bg-emerald-50">
-                <td className="text-center p-2">
-                  <div className="flex justify-center gap-x-4">
-                    <Link to={`/dancers/details/${dancer._id}`}>
-                      <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                    </Link>
-                    <Link to={`/dancers/edit/${dancer._id}`}>
-                      <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                    </Link>
-                    <Link to={`/dancers/delete/${dancer._id}`}>
-                      <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                    </Link>
-                  </div>
-                </td>
-              </div>
+              {showOperations && (
+                <div className="mb-2 bg-emerald-50">
+                  <td className="text-center p-2">
+                    <div className="flex justify-center gap-x-4">
+                      <Link to={`/dancers/details/${dancer._id}`}>
+                        <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                      </Link>
+                      <Link to={`/dancers/edit/${dancer._id}`}>
+                        <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                      </Link>
+                      <Link to={`/dancers/delete/${dancer._id}`}>
+                        <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                      </Link>
+                    </div>
+                  </td>
+                </div>
+              )}
             </tr>
           ))}
         </tbody>
@@ -190,9 +192,11 @@ const DancersTable = ({ data }) => {
             <th className="border border-emerald-300 rounded-md p-2 w-4/12">
               Dance Styles
             </th>
-            <th className="border border-emerald-300 rounded-md p-2 w-2/12">
-              Operations
-            </th>
+            {showOperations && (
+              <th className="border border-emerald-300 rounded-md p-2 w-2/12">
+                Operations
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -216,19 +220,21 @@ const DancersTable = ({ data }) => {
                   ))}
                 </div>
               </td>
-              <td className="border border-emerald-200 rounded-md text-center p-2 w-2/12">
-                <div className="flex justify-center gap-x-4">
-                  <Link to={`/dancers/details/${dancer._id}`}>
-                    <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                  </Link>
-                  <Link to={`/dancers/edit/${dancer._id}`}>
-                    <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                  </Link>
-                  <Link to={`/dancers/delete/${dancer._id}`}>
-                    <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                  </Link>
-                </div>
-              </td>
+              {showOperations && (
+                <td className="border border-emerald-200 rounded-md text-center p-2 w-2/12">
+                  <div className="flex justify-center gap-x-4">
+                    <Link to={`/dancers/details/${dancer._id}`}>
+                      <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/edit/${dancer._id}`}>
+                      <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/delete/${dancer._id}`}>
+                      <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                  </div>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import DancerModal from './DancerModal';
 
-const DancerSingleCard = ({ dancer }) => {
+const DancerSingleCard = ({ dancer, showOperations }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -36,21 +36,23 @@ const DancerSingleCard = ({ dancer }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
-        <BiShow
-          className="text-3xl text-blue-800 hover:text-black cursor-pointer"
-          onClick={() => setShowModal(true)}
-        />
-        <Link to={`/dancers/details/${dancer._id}`}>
-          <BsInfoCircle className="text-2xl text-emerald-800" />
-        </Link>
-        <Link to={`/dancers/edit/${dancer._id}`}>
-          <AiOutlineEdit className="text-2xl text-yellow-600" />
-        </Link>
-        <Link to={`/dancers/delete/${dancer._id}`}>
-          <MdOutlineDelete className="text-2xl text-red-600" />
-        </Link>
-      </div>
+      {showOperations && (
+        <div className="flex justify-between items-center gap-x-2 mt-4 p-4">
+          <BiShow
+            className="text-3xl text-blue-800 hover:text-black cursor-pointer"
+            onClick={() => setShowModal(true)}
+          />
+          <Link to={`/dancers/details/${dancer._id}`}>
+            <BsInfoCircle className="text-2xl text-emerald-800" />
+          </Link>
+          <Link to={`/dancers/edit/${dancer._id}`}>
+            <AiOutlineEdit className="text-2xl text-yellow-600" />
+          </Link>
+          <Link to={`/dancers/delete/${dancer._id}`}>
+            <MdOutlineDelete className="text-2xl text-red-600" />
+          </Link>
+        </div>
+      )}
       {showModal && (
         <DancerModal dancer={dancer} closeModal={() => setShowModal(false)} />
       )}
