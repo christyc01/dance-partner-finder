@@ -44,7 +44,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-0 md:p-4">
       <div className="flex justify-center items-center gap-x-4">
         <button
           onClick={() => setView('table')}

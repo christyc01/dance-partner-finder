@@ -96,17 +96,17 @@ const EditDancer = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-white shadow-lg rounded-lg">
+    <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
       <BackButton />
       <div className="flex flex-col w-full items-center">
-        <div className="w-96">
+        <div className="w-full md:w-96">
           <h1 className="text-2xl font-bold mb-2 text-emerald-600">
             Edit Dancer
           </h1>
           {loading ? <Spinner /> : ''}
           <form
             onSubmit={handleEditDancer}
-            className="flex flex-col border-2  bg-emerald-200 border-emerald-300 rounded-xl p-6"
+            className="flex flex-col md:border-2  bg-emerald-200 border-emerald-300 md:rounded-xl p-6"
           >
             <div className="my-4">
               <label
