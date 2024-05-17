@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner';
 import DancersCard from '../components/home/DancersCard';
 import DancersTable from '../components/home/DancersTable';
 import AdminToggle from '../components/AdminToggle';
+import ViewToggle from '../components/ViewToggle';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -47,29 +48,12 @@ const Home = () => {
 
   return (
     <div className="p-0 md:p-4">
-      <div className="flex flex-col justify-center items-center gap-y-2">
+      <div className="flex flex-col justify-center items-center gap-y-2 mt-4">
         <AdminToggle
           showOperations={showOperations}
           setShowOperations={setShowOperations}
         />
-        <div className="w-full max-w-64">
-          <button
-            onClick={() => setView('table')}
-            className={`w-1/2 hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
-              view === 'table' ? 'bg-emerald-500' : 'bg-emerald-300'
-            } `}
-          >
-            Table View
-          </button>
-          <button
-            onClick={() => setView('card')}
-            className={`w-1/2 hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
-              view === 'card' ? 'bg-emerald-500' : 'bg-emerald-300'
-            }`}
-          >
-            Card View
-          </button>
-        </div>
+        <ViewToggle view={view} setView={setView} />
       </div>
       <div className="flex justify-between items-center mx-4">
         <h1 className="text-3xl my-8">Dancers</h1>
