@@ -138,7 +138,7 @@ const DancersTable = ({ data, showOperations }) => {
       <table className="md:hidden w-full border-separate table-fixed">
         <tbody>
           {dataToShow.map((dancer) => (
-            <tr key={dancer._id}>
+            <tr key={dancer._id} className="flex flex-col">
               <td className="mt-2 bg-emerald-50 flex justify-between">
                 <div className="p-2">{dancer.name}</div>
                 <div className="p-2">{dancer.location}</div>
