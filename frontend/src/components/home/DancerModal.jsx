@@ -11,7 +11,7 @@ const DancerModal = ({ dancer, closeModal }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative"
+        className="w-[600px] max-w-full bg-white rounded-xl p-4 flex flex-col relative"
       >
         <AiOutlineClose
           onClick={closeModal}
