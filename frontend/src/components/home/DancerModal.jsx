@@ -17,18 +17,6 @@ const DancerModal = ({ dancer, closeModal }) => {
           onClick={closeModal}
           className="absolute right-6 top-6 text-3xl text-emerald-600 cursor-pointer"
         />
-        <h2 className="w-fit px-4 py-1 flex">
-          <span className="flex flex-wrap">
-            {dancer?.danceStyles?.map((danceStyle) => (
-              <div
-                key={danceStyle}
-                className="bg-emerald-500 text-white rounded-full p-3 m-3"
-              >
-                {danceStyle}
-              </div>
-            ))}
-          </span>
-        </h2>
         <div className="flex justify-start items-center gap-x-2">
           <BiUserCircle className="text-black text-2xl" />
           <h2 className="my-1">{dancer.name}</h2>
@@ -36,6 +24,16 @@ const DancerModal = ({ dancer, closeModal }) => {
         <div className="flex justify-start items-center gap-x-2">
           <GrLocation className="text-black-300 text-2xl" />
           <h2 className="my-1">{dancer.location}</h2>
+        </div>
+        <div className="w-fit py-1 flex flex-wrap">
+          {dancer?.danceStyles?.map((danceStyle) => (
+            <div
+              key={danceStyle}
+              className="bg-emerald-500 text-white rounded-full p-3 m-3"
+            >
+              {danceStyle}
+            </div>
+          ))}
         </div>
         <p className="mt-4">Random details to come...</p>
         <p className="my-2">
