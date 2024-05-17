@@ -15,10 +15,7 @@ const DancerSingleCard = ({
   setShowModal,
 }) => {
   return (
-    <div
-      key={dancer._id}
-      className="border-2 border-emerald-300 bg-emerald-200 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl"
-    >
+    <div className="border-2 border-emerald-300 bg-emerald-200 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl">
       <div
         onClick={(e) => {
           e.stopPropagation();
