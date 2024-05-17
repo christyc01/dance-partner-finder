@@ -1,16 +1,22 @@
 /* eslint-disable react/prop-types */
 const AdminToggle = ({ showOperations, setShowOperations }) => {
-  const handleToggleAdminMode = () => {
-    showOperations ? setShowOperations(false) : setShowOperations(true);
-  };
-
   return (
     <div>
       <button
-        onClick={handleToggleAdminMode}
-        className="bg-yellow-500 rounded-full p-4"
+        onClick={() => setShowOperations(true)}
+        className={`hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
+          showOperations ? 'bg-emerald-500' : 'bg-emerald-300'
+        }`}
       >
-        Admin Mode
+        Admin Mode On
+      </button>
+      <button
+        onClick={() => setShowOperations(false)}
+        className={`hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
+          !showOperations ? 'bg-emerald-500' : 'bg-emerald-300'
+        }`}
+      >
+        Admin Mode Off
       </button>
     </div>
   );

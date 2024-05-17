@@ -47,27 +47,29 @@ const Home = () => {
 
   return (
     <div className="p-0 md:p-4">
-      <AdminToggle
-        showOperations={showOperations}
-        setShowOperations={setShowOperations}
-      />
-      <div className="flex justify-center items-center">
-        <button
-          onClick={() => setView('table')}
-          className={`hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
-            view === 'table' ? 'bg-emerald-500' : 'bg-emerald-300'
-          } `}
-        >
-          Table View
-        </button>
-        <button
-          onClick={() => setView('card')}
-          className={`hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
-            view === 'card' ? 'bg-emerald-500' : 'bg-emerald-300'
-          }`}
-        >
-          Card View
-        </button>
+      <div className="flex flex-col justify-center items-center gap-y-2">
+        <AdminToggle
+          showOperations={showOperations}
+          setShowOperations={setShowOperations}
+        />
+        <div>
+          <button
+            onClick={() => setView('table')}
+            className={`hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
+              view === 'table' ? 'bg-emerald-500' : 'bg-emerald-300'
+            } `}
+          >
+            Table View
+          </button>
+          <button
+            onClick={() => setView('card')}
+            className={`hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
+              view === 'card' ? 'bg-emerald-500' : 'bg-emerald-300'
+            }`}
+          >
+            Card View
+          </button>
+        </div>
       </div>
       <div className="flex justify-between items-center mx-4">
         <h1 className="text-3xl my-8">Dancers</h1>
