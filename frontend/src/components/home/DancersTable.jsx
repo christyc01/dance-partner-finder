@@ -53,7 +53,7 @@ const DancersTable = ({ data, showOperations }) => {
   return (
     <div className="p-0 md:p-4">
       <div className="flex flex-col lg:flex-row justify-between mb-6">
-        <div className="bg-white shadow-lg p-4 rounded-lg w-full lg:w-1/2 mr-4">
+        <div className="bg-white shadow-lg p-4 md:rounded-lg w-full lg:w-1/2 mr-4">
           <h3 className="text-xl font-semibold mb-2 text-emerald-600">
             Filter by Location
           </h3>
@@ -91,7 +91,7 @@ const DancersTable = ({ data, showOperations }) => {
             ))}
           </div>
         </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg w-full lg:w-1/2">
+        <div className="bg-white shadow-lg p-4 md:rounded-lg w-full lg:w-1/2">
           <h3 className="text-xl font-semibold mb-2 text-emerald-600">
             Filter by Dance Style
           </h3>
