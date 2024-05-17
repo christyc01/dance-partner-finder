@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 const AdminToggle = ({ showOperations, setShowOperations }) => {
   return (
-    <div>
+    <div className="w-full max-w-80">
       <button
         onClick={() => setShowOperations(true)}
-        className={`hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
+        className={`w-1/2 hover:bg-emerald-500 px-4 py-1 rounded-l-full ${
           showOperations ? 'bg-emerald-500' : 'bg-emerald-300'
         }`}
       >
@@ -12,7 +12,7 @@ const AdminToggle = ({ showOperations, setShowOperations }) => {
       </button>
       <button
         onClick={() => setShowOperations(false)}
-        className={`hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
+        className={`w-1/2 hover:bg-emerald-500 px-4 py-1 rounded-r-full ${
           !showOperations ? 'bg-emerald-500' : 'bg-emerald-300'
         }`}
       >
