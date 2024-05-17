@@ -156,21 +156,19 @@ const DancersTable = ({ data, showOperations }) => {
                 </div>
               </td>
               {showOperations && (
-                <div className="mb-2 bg-emerald-50">
-                  <td className="text-center p-2">
-                    <div className="flex justify-center gap-x-4">
-                      <Link to={`/dancers/details/${dancer._id}`}>
-                        <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                      </Link>
-                      <Link to={`/dancers/edit/${dancer._id}`}>
-                        <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                      </Link>
-                      <Link to={`/dancers/delete/${dancer._id}`}>
-                        <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
-                      </Link>
-                    </div>
-                  </td>
-                </div>
+                <td className="mb-2 bg-emerald-50 text-center p-2">
+                  <div className="flex justify-center gap-x-4">
+                    <Link to={`/dancers/details/${dancer._id}`}>
+                      <BsInfoCircle className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/edit/${dancer._id}`}>
+                      <AiOutlineEdit className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                    <Link to={`/dancers/delete/${dancer._id}`}>
+                      <MdOutlineDelete className="text-2xl text-emerald-700 hover:text-emerald-900" />
+                    </Link>
+                  </div>
+                </td>
               )}
             </tr>
           ))}
