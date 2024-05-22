@@ -44,6 +44,9 @@ const DanceEventsHome = () => {
       });
   };
 
+  const handleAttendeeComingChange = (name) => {
+    console.log('name is:', name);
+  };
   return (
     <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
       <BackButton />
@@ -77,12 +80,24 @@ const DanceEventsHome = () => {
                         </ul>
                       </div>
                       <div>
-                        <button
-                          onClick={() => handleAttendeeComingClick(event._id)}
-                          className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
-                        >
-                          I&apos;m coming!
-                        </button>
+                        <form>
+                          <label htmlFor="attendeeName"></label>
+                          <input
+                            id="attendeeName"
+                            type="text"
+                            className="bg-green-400"
+                            onChange={(e) =>
+                              handleAttendeeComingChange(e.target.value)
+                            }
+                          />
+                          <button
+                            type="submit"
+                            onClick={() => handleAttendeeComingClick(event._id)}
+                            className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
+                          >
+                            I&apos;m coming!
+                          </button>
+                        </form>
                       </div>
                     </div>
                   </div>
