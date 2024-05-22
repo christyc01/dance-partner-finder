@@ -49,6 +49,12 @@ const DanceEventsHome = () => {
                       <li>{event.location}</li>
                       <li>{event.danceStyles}</li>
                     </ul>
+                    <p>Attendees:</p>
+                    <ul className="list-disc pl-8">
+                      {event.attendees.map((attendee) => (
+                        <li key={attendee}>{attendee}</li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
             </div>

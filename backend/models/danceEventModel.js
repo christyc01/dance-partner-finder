@@ -14,6 +14,9 @@ const danceEventSchema = new mongoose.Schema(
       type: Array,
       // required: true,
     },
+    attendees: {
+      type: Array,
+    },
   },
   {
     timestamps: true,
