@@ -4,7 +4,7 @@ import DeleteDancer from './pages/DeleteDancer';
 import EditDancer from './pages/EditDancer';
 import Home from './pages/Home';
 import ShowDancer from './pages/ShowDancer';
-import ShowDanceEvent from './pages/ShowDanceEvent';
+import DanceEventsHome from './pages/DanceEventsHome';
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
       <Route path="/dancers/delete/:id" element={<DeleteDancer />} />
       <Route path="/dancers/edit/:id" element={<EditDancer />} />
       <Route path="/dancers/details/:id" element={<ShowDancer />} />
-      <Route path="/dance-events" element={<ShowDanceEvent />} />
+      <Route path="/dance-events" element={<DanceEventsHome />} />
     </Routes>
   );
 };

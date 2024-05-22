@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
-const ShowDanceEvent = () => {
+const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -59,4 +59,4 @@ const ShowDanceEvent = () => {
   );
 };
 
-export default ShowDanceEvent;
+export default DanceEventsHome;
