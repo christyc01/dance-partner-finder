@@ -24,7 +24,9 @@ const DanceEventsHome = () => {
     getDanceEventData();
   }, []);
 
-  console.log('eventData:', danceEventData);
+  const handleAttendeeComingClick = () => {
+    console.log('clicked');
+  };
 
   return (
     <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
@@ -49,12 +51,24 @@ const DanceEventsHome = () => {
                       <li>{event.location}</li>
                       <li>{event.danceStyles}</li>
                     </ul>
-                    <p>Attendees:</p>
-                    <ul className="list-disc pl-8">
-                      {event.attendees.map((attendee) => (
-                        <li key={attendee}>{attendee}</li>
-                      ))}
-                    </ul>
+                    <div className="flex justify-between mt-4">
+                      <div>
+                        <p>Attendees:</p>
+                        <ul className="list-disc pl-8">
+                          {event.attendees.map((attendee) => (
+                            <li key={attendee}>{attendee}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <button
+                          onClick={handleAttendeeComingClick}
+                          className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
+                        >
+                          I&apos;m coming!
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 ))}
             </div>
