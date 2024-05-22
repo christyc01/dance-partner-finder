@@ -24,8 +24,24 @@ const DanceEventsHome = () => {
     getDanceEventData();
   }, []);
 
-  const handleAttendeeComingClick = () => {
-    console.log('clicked');
+  const handleAttendeeComingClick = (id) => {
+    console.log('clicked', id);
+    axios
+      .put(`http://localhost:5555/dance-events/${id}`, {
+        attendees: danceEventData.attendees,
+      })
+      .then(() => {
+        axios
+          .get(`http://localhost:5555/dance-events/${id}`)
+          .then((response) => {
+            setDanceEventData((prevData) => ({
+              ...prevData,
+              data: prevData.data.map((event) =>
+                event._id === id ? response.data : event
+              ),
+            }));
+          });
+      });
   };
 
   return (
@@ -62,7 +78,7 @@ const DanceEventsHome = () => {
                       </div>
                       <div>
                         <button
-                          onClick={handleAttendeeComingClick}
+                          onClick={() => handleAttendeeComingClick(event._id)}
                           className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
                         >
                           I&apos;m coming!
