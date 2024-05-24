@@ -22,6 +22,19 @@ const DanceEventsHome = () => {
     if (!danceEventToUpdate) return;
 
     console.log('danceEventToUpdate:', danceEventToUpdate);
+
+    const updatedAttendees = [...danceEventToUpdate.attendees, newAttendee];
+    console.log('updatedAttendees:', updatedAttendees);
+
+    const data = {
+      eventName: danceEventToUpdate.eventName,
+      location: danceEventToUpdate.location,
+      danceStyles: danceEventToUpdate.danceStyles,
+      attendees: updatedAttendees,
+    };
+    axios
+      .put(`http://localhost:5555/dance-events/${id}`, data)
+      .then((response) => console.log('response:', response));
   };
 
   // Get the main dance event data for the cards
