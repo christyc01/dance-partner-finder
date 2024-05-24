@@ -6,7 +6,25 @@ import Spinner from '../components/Spinner';
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [newAttendee, setNewAttendee] = useState('');
+  const [attendeeList, setAttendeeList] = useState([]);
 
+  const handleAttendeeComingClick = async (event, id) => {
+    console.log('clicked id:', id);
+    console.log('clicked event:', event);
+    console.log('danceEventData:', danceEventData);
+
+    event.preventDefault();
+
+    const danceEventToUpdate = danceEventData.data.find(
+      (event) => event._id === id
+    );
+    if (!danceEventToUpdate) return;
+
+    console.log('danceEventToUpdate:', danceEventToUpdate);
+  };
+
+  // Get the main dance event data for the cards
   useEffect(() => {
     const getDanceEventData = () => {
       setLoading(true);
@@ -24,29 +42,11 @@ const DanceEventsHome = () => {
     getDanceEventData();
   }, []);
 
-  const handleAttendeeComingClick = (id) => {
-    console.log('clicked', id);
-    axios
-      .put(`http://localhost:5555/dance-events/${id}`, {
-        attendees: danceEventData.attendees,
-      })
-      .then(() => {
-        axios
-          .get(`http://localhost:5555/dance-events/${id}`)
-          .then((response) => {
-            setDanceEventData((prevData) => ({
-              ...prevData,
-              data: prevData.data.map((event) =>
-                event._id === id ? response.data : event
-              ),
-            }));
-          });
-      });
+  // Set newAttendee to the name from the input field
+  const handleAttendeeComingChange = (name) => {
+    setNewAttendee(name);
   };
 
-  const handleAttendeeComingChange = (name) => {
-    console.log('name is:', name);
-  };
   return (
     <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
       <BackButton />
@@ -80,7 +80,11 @@ const DanceEventsHome = () => {
                         </ul>
                       </div>
                       <div>
-                        <form>
+                        <form
+                          onSubmit={(e) =>
+                            handleAttendeeComingClick(e, event._id)
+                          }
+                        >
                           <label htmlFor="attendeeName"></label>
                           <input
                             id="attendeeName"
@@ -92,7 +96,6 @@ const DanceEventsHome = () => {
                           />
                           <button
                             type="submit"
-                            onClick={() => handleAttendeeComingClick(event._id)}
                             className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
                           >
                             I&apos;m coming!
