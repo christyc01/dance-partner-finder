@@ -32,9 +32,16 @@ const DanceEventsHome = () => {
       danceStyles: danceEventToUpdate.danceStyles,
       attendees: updatedAttendees,
     };
-    axios
-      .put(`http://localhost:5555/dance-events/${id}`, data)
-      .then((response) => console.log('response:', response));
+    axios.put(`http://localhost:5555/dance-events/${id}`, data).then(() => {
+      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) =>
+        setDanceEventData((prevData) => ({
+          ...prevData,
+          data: prevData.data.map((event) =>
+            event._id === id ? { ...event, ...response.data } : event
+          ),
+        }))
+      );
+    });
   };
 
   // Get the main dance event data for the cards
