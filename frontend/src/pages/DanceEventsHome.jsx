@@ -32,15 +32,17 @@ const DanceEventsHome = () => {
       danceStyles: danceEventToUpdate.danceStyles,
       attendees: updatedAttendees,
     };
+
     axios.put(`http://localhost:5555/dance-events/${id}`, data).then(() => {
-      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) =>
+      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) => {
         setDanceEventData((prevData) => ({
           ...prevData,
           data: prevData.data.map((event) =>
             event._id === id ? { ...event, ...response.data } : event
           ),
-        }))
-      );
+        }));
+        setNewAttendee(''); // So if the user clicks the add button multiple times without adjusting the input, it won't add the same newAttendee multiple times
+      });
     });
   };
 
