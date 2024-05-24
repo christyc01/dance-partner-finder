@@ -6,14 +6,9 @@ import Spinner from '../components/Spinner';
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [newAttendee, setNewAttendee] = useState('');
-  const [attendeeList, setAttendeeList] = useState([]);
+  const [attendees, setAttendees] = useState({});
 
   const handleAttendeeComingClick = async (event, id) => {
-    console.log('clicked id:', id);
-    console.log('clicked event:', event);
-    console.log('danceEventData:', danceEventData);
-
     event.preventDefault();
 
     const danceEventToUpdate = danceEventData.data.find(
@@ -21,10 +16,7 @@ const DanceEventsHome = () => {
     );
     if (!danceEventToUpdate) return;
 
-    console.log('danceEventToUpdate:', danceEventToUpdate);
-
-    const updatedAttendees = [...danceEventToUpdate.attendees, newAttendee];
-    console.log('updatedAttendees:', updatedAttendees);
+    const updatedAttendees = [...danceEventToUpdate.attendees, attendees[id]];
 
     const data = {
       eventName: danceEventToUpdate.eventName,
@@ -41,7 +33,7 @@ const DanceEventsHome = () => {
             event._id === id ? { ...event, ...response.data } : event
           ),
         }));
-        setNewAttendee(''); // So if the user clicks the add button multiple times without adjusting the input, it won't add the same newAttendee multiple times
+        setAttendees(updatedAttendees);
       });
     });
   };
@@ -54,6 +46,7 @@ const DanceEventsHome = () => {
         .get('http://localhost:5555/dance-events')
         .then((response) => {
           setDanceEventData(response.data);
+          // sets the attendeeList to be the contents of newAttendeeList (which is the response's data, reduced to where the instance with the event id matches the event attendees??)
           setLoading(false);
         })
         .catch((error) => {
@@ -65,8 +58,11 @@ const DanceEventsHome = () => {
   }, []);
 
   // Set newAttendee to the name from the input field
-  const handleAttendeeComingChange = (name) => {
-    setNewAttendee(name);
+  const handleAttendeeComingChange = (id, value) => {
+    setAttendees((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
   return (
@@ -97,6 +93,7 @@ const DanceEventsHome = () => {
                         <p>Attendees:</p>
                         <ul className="list-disc pl-8">
                           {event.attendees.map((attendee) => (
+                            // TODO: add validation to avoid duplicate names, or add some other field that will work for the key
                             <li key={attendee}>{attendee}</li>
                           ))}
                         </ul>
@@ -113,12 +110,21 @@ const DanceEventsHome = () => {
                             type="text"
                             className="bg-green-400"
                             onChange={(e) =>
-                              handleAttendeeComingChange(e.target.value)
+                              handleAttendeeComingChange(
+                                event._id,
+                                e.target.value
+                              )
                             }
                           />
                           <button
                             type="submit"
-                            className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full"
+                            // TODO: Can the submit code be moved here? What does it change?
+                            // TODO: Stop user from submitting an empty string.
+                            className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-red-600`}
+                            disabled={
+                              !attendees[event._id] ||
+                              attendees[event._id] === ''
+                            }
                           >
                             I&apos;m coming!
                           </button>
