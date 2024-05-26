@@ -33,7 +33,7 @@ const DanceEventsHome = () => {
             event._id === id ? { ...event, ...response.data } : event
           ),
         }));
-        setAttendees(updatedAttendees);
+        setAttendees((prev) => ({ ...prev, [id]: '' }));
       });
     });
   };
@@ -46,7 +46,6 @@ const DanceEventsHome = () => {
         .get('http://localhost:5555/dance-events')
         .then((response) => {
           setDanceEventData(response.data);
-          // sets the attendeeList to be the contents of newAttendeeList (which is the response's data, reduced to where the instance with the event id matches the event attendees??)
           setLoading(false);
         })
         .catch((error) => {
@@ -109,6 +108,7 @@ const DanceEventsHome = () => {
                             id="attendeeName"
                             type="text"
                             className="bg-green-400"
+                            value={attendees[event._id]}
                             onChange={(e) =>
                               handleAttendeeComingChange(
                                 event._id,
@@ -118,7 +118,6 @@ const DanceEventsHome = () => {
                           />
                           <button
                             type="submit"
-                            // TODO: Can the submit code be moved here? What does it change?
                             // TODO: Stop user from submitting an empty string.
                             className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-red-600`}
                             disabled={
