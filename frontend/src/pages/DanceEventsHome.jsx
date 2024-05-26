@@ -91,9 +91,8 @@ const DanceEventsHome = () => {
                       <div>
                         <p>Attendees:</p>
                         <ul className="list-disc pl-8">
-                          {event.attendees.map((attendee) => (
-                            // TODO: add validation to avoid duplicate names, or add some other field that will work for the key
-                            <li key={attendee}>{attendee}</li>
+                          {event.attendees.map((attendee, index) => (
+                            <li key={index}>{attendee}</li>
                           ))}
                         </ul>
                       </div>
