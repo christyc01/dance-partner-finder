@@ -118,8 +118,7 @@ const DanceEventsHome = () => {
                           />
                           <button
                             type="submit"
-                            // TODO: Stop user from submitting an empty string.
-                            className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-red-600`}
+                            className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
                             disabled={
                               !attendees[event._id] ||
                               attendees[event._id] === ''
