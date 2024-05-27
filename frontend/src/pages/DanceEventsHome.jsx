@@ -107,7 +107,7 @@ const DanceEventsHome = () => {
                             id="attendeeName"
                             type="text"
                             className="bg-green-400"
-                            value={attendees[event._id]}
+                            value={attendees[event._id] || ''}
                             onChange={(e) =>
                               handleAttendeeComingChange(
                                 event._id,
