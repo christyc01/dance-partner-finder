@@ -4,11 +4,14 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import DanceEventModal from '../components/home/DanceEventModal';
 
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
   const [loading, setLoading] = useState(false);
   const [attendees, setAttendees] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState({});
 
   const handleAttendeeComingClick = async (event, id) => {
     event.preventDefault();
@@ -66,6 +69,10 @@ const DanceEventsHome = () => {
     }));
   };
 
+  const handleEventClick = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
       <BackButton />
@@ -100,6 +107,10 @@ const DanceEventsHome = () => {
                   <div
                     key={event._id}
                     className="border-2 border-emerald-500 m-4 p-4 rounded-lg bg-emerald-50"
+                    onClick={() => {
+                      handleEventClick();
+                      setSelectedEvent(event);
+                    }}
                   >
                     <p className="font-bold">{event.eventName}</p>
                     <ul className="list-disc pl-8">
@@ -147,6 +158,12 @@ const DanceEventsHome = () => {
                         </form>
                       </div>
                     </div>
+                    {showModal && (
+                      <DanceEventModal
+                        danceEvent={selectedEvent}
+                        closeModal={() => setShowModal(false)}
+                      />
+                    )}
                   </div>
                 ))}
             </div>
