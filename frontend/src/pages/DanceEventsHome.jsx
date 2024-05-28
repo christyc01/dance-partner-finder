@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
@@ -72,6 +74,23 @@ const DanceEventsHome = () => {
           <h1 className="text-2xl font-bold mb-2 text-emerald-600">
             Show Dance Event
           </h1>
+          {!loading && (
+            <MapContainer
+              center={[51.505, -0.09]}
+              zoom={13}
+              style={{ height: '100vh', width: '100%' }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={[51.505, -0.09]}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            </MapContainer>
+          )}
           {loading ? (
             <Spinner />
           ) : (
