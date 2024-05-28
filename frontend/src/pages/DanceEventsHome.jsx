@@ -158,14 +158,14 @@ const DanceEventsHome = () => {
                         </form>
                       </div>
                     </div>
-                    {showModal && (
-                      <DanceEventModal
-                        danceEvent={selectedEvent}
-                        closeModal={() => setShowModal(false)}
-                      />
-                    )}
                   </div>
                 ))}
+              {showModal && (
+                <DanceEventModal
+                  danceEvent={selectedEvent}
+                  closeModal={() => setShowModal(false)}
+                />
+              )}
             </div>
           )}
         </div>
