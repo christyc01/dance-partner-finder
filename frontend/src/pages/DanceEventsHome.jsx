@@ -12,6 +12,10 @@ const DanceEventsHome = () => {
   const [attendees, setAttendees] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({});
+  const [mapLocation, setMapLocation] = useState([51.505, -0.09]);
+  const address = '1600 Amphitheatre Parkway, Mountain View, CA';
+  // const address = 'Frankfurt, Germany';
+  // const address = '101 9 Ave SW, Calgary';
 
   const handleAttendeeComingClick = async (event, id) => {
     event.preventDefault();
@@ -73,6 +77,31 @@ const DanceEventsHome = () => {
     setShowModal(true);
   };
 
+  useEffect(() => {
+    const fetchCoordinates = async (address) => {
+      try {
+        const response = await axios.get(
+          'https://nominatim.openstreetmap.org/search',
+          {
+            params: {
+              q: address,
+              format: 'json',
+              addressdetails: 1,
+              limit: 1,
+            },
+          }
+        );
+        if (response.data && response.data.length > 0) {
+          const { lat, lon } = response.data[0];
+          setMapLocation([parseFloat(lat), parseFloat(lon)]);
+        }
+      } catch (error) {
+        console.error('Error fetching coordinates:', error);
+      }
+    };
+    fetchCoordinates(address);
+  }, [address]);
+
   return (
     <div className="md:p-4 bg-white shadow-lg md:rounded-lg">
       <BackButton />
@@ -83,7 +112,7 @@ const DanceEventsHome = () => {
           </h1>
           {!loading && (
             <MapContainer
-              center={[51.505, -0.09]}
+              center={mapLocation}
               zoom={13}
               className="h-screen w-full z-0"
             >
@@ -91,7 +120,7 @@ const DanceEventsHome = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
-              <Marker position={[51.505, -0.09]}>
+              <Marker position={mapLocation}>
                 <Popup>
                   A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup>
