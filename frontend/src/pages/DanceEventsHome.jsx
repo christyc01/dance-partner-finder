@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 import DanceEventModal from '../components/home/DanceEventModal';
+import { Link } from 'react-router-dom';
+import { MdOutlineAddBox } from 'react-icons/md';
 
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
@@ -83,65 +85,72 @@ const DanceEventsHome = () => {
           {loading ? (
             <Spinner />
           ) : (
-            <div className="p-0 md:p-4 mt-2 grid lg:grid-cols-3 xl:grid-cols-4 justify-center">
-              {danceEventData.data &&
-                danceEventData.data.map((event) => (
-                  <div
-                    key={event._id}
-                    className="border-2 border-emerald-500 m-4 p-4 rounded-lg bg-emerald-50"
-                    onClick={() => {
-                      handleEventClick();
-                      setSelectedEvent(event);
-                    }}
-                  >
-                    <p className="font-bold">{event.eventName}</p>
-                    <ul className="list-disc pl-8">
-                      <li>{event.location}</li>
-                      <li>{event.danceStyles}</li>
-                    </ul>
-                    <div className="flex justify-between mt-4">
-                      <div>
-                        <p>Attendees:</p>
-                        <ul className="list-disc pl-8">
-                          {event.attendees.map((attendee, index) => (
-                            <li key={index}>{attendee}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <form
-                          onSubmit={(e) =>
-                            handleAttendeeComingClick(e, event._id)
-                          }
-                        >
-                          <label htmlFor="attendeeName"></label>
-                          <input
-                            id="attendeeName"
-                            type="text"
-                            className="bg-green-400"
-                            value={attendees[event._id] || ''}
-                            onChange={(e) =>
-                              handleAttendeeComingChange(
-                                event._id,
-                                e.target.value
-                              )
-                            }
-                          />
-                          <button
-                            type="submit"
-                            className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
-                            disabled={
-                              !attendees[event._id] ||
-                              attendees[event._id] === ''
+            <div>
+              <div>
+                <Link to="/dance-events/create">
+                  <MdOutlineAddBox className="text-emerald-800 text-4xl" />
+                </Link>
+              </div>
+              <div className="p-0 md:p-4 mt-2 grid lg:grid-cols-3 xl:grid-cols-4 justify-center">
+                {danceEventData.data &&
+                  danceEventData.data.map((event) => (
+                    <div
+                      key={event._id}
+                      className="border-2 border-emerald-500 m-4 p-4 rounded-lg bg-emerald-50"
+                      onClick={() => {
+                        handleEventClick();
+                        setSelectedEvent(event);
+                      }}
+                    >
+                      <p className="font-bold">{event.eventName}</p>
+                      <ul className="list-disc pl-8">
+                        <li>{event.location}</li>
+                        <li>{event.danceStyles}</li>
+                      </ul>
+                      <div className="flex justify-between mt-4">
+                        <div>
+                          <p>Attendees:</p>
+                          <ul className="list-disc pl-8">
+                            {event.attendees.map((attendee, index) => (
+                              <li key={index}>{attendee}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <form
+                            onSubmit={(e) =>
+                              handleAttendeeComingClick(e, event._id)
                             }
                           >
-                            I&apos;m coming!
-                          </button>
-                        </form>
+                            <label htmlFor="attendeeName"></label>
+                            <input
+                              id="attendeeName"
+                              type="text"
+                              className="bg-green-400"
+                              value={attendees[event._id] || ''}
+                              onChange={(e) =>
+                                handleAttendeeComingChange(
+                                  event._id,
+                                  e.target.value
+                                )
+                              }
+                            />
+                            <button
+                              type="submit"
+                              className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
+                              disabled={
+                                !attendees[event._id] ||
+                                attendees[event._id] === ''
+                              }
+                            >
+                              I&apos;m coming!
+                            </button>
+                          </form>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
               {showModal && (
                 <DanceEventModal
                   danceEvent={selectedEvent}
