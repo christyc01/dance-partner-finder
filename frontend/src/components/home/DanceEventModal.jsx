@@ -1,9 +1,54 @@
 /* eslint-disable react/prop-types */
+import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BiUserCircle } from 'react-icons/bi';
 import { GrLocation } from 'react-icons/gr';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import { useEffect, useState } from 'react';
 
 const DanceEventModal = ({ danceEvent, closeModal }) => {
+  const [loading, setLoading] = useState(true);
+  const [mapLocation, setMapLocation] = useState(danceEvent.location);
+  // const address = '1600 Amphitheatre Parkway, Mountain View, CA';
+  // const address = 'Frankfurt, Germany';
+  const address = danceEvent.location;
+
+  useEffect(() => {
+    setLoading(true);
+    const fetchCoordinates = async (address) => {
+      try {
+        const response = await axios.get(
+          'https://nominatim.openstreetmap.org/search',
+          {
+            params: {
+              q: address,
+              format: 'json',
+              addressdetails: 1,
+              limit: 1,
+            },
+          }
+        );
+        if (
+          response.data &&
+          response.data.length > 0 &&
+          response.data[0] !== null
+        ) {
+          console.log('response.data:', response.data);
+          const { lat, lon } = response.data[0];
+          setMapLocation([parseFloat(lat), parseFloat(lon)]);
+          setLoading(false);
+        } else {
+          console.warn('No matching location found for the provided address');
+        }
+      } catch (error) {
+        console.error('Error fetching coordinates:', error);
+        setLoading(false);
+      }
+    };
+    fetchCoordinates(address);
+  }, [address]);
+
   return (
     <div
       className="fixed bg-black bg-opacity-60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
@@ -24,6 +69,23 @@ const DanceEventModal = ({ danceEvent, closeModal }) => {
         <div className="flex justify-start items-center gap-x-2">
           <GrLocation className="text-black-300 text-2xl" />
           <h2 className="my-1">{danceEvent.location}</h2>
+          {!loading && (
+            <MapContainer
+              center={mapLocation}
+              zoom={13}
+              className="h-screen w-full z-0"
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <Marker position={mapLocation}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            </MapContainer>
+          )}
         </div>
         <div className="w-fit py-1 flex flex-wrap">
           {danceEvent?.danceStyles?.map((danceStyle) => (
