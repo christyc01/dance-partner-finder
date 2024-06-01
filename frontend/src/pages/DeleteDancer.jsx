@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import Spinner from '../components/Spinner';
