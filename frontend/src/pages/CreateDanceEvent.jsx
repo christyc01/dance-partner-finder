@@ -3,8 +3,8 @@ import { useState } from 'react';
 const CreateDanceEvent = () => {
   const [formValues, setFormValues] = useState({});
 
-  const handleChange = () => {
-    setFormValues({ test: 'lalalalala' });
+  const handleChange = (e) => {
+    setFormValues({ test: e.target.value });
   };
 
   console.log('formValues:', formValues);
@@ -15,9 +15,9 @@ const CreateDanceEvent = () => {
       <form action="submit">
         <input
           type="text"
-          placeholder="hjkhkjhkj"
+          placeholder="Holding the place"
           className="bg-emerald-50 p-4 rounded-xl"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </form>
     </div>
