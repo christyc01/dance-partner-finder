@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineDelete } from 'react-icons/md';
+import { GiBallerinaShoes } from 'react-icons/gi';
 
 const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   const [loading, setLoading] = useState(true);
@@ -99,13 +100,14 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
             onClick={closeModal}
             className="absolute right-6 top-6 text-3xl text-emerald-600 cursor-pointer"
           />
-          <div className="flex justify-start items-center gap-x-2">
-            <BiUserCircle className="text-black text-2xl" />
+          <div className="flex justify-start items-center font-bold pb-4">
             <h2 className="my-1">{danceEvent.eventName}</h2>
           </div>
-          <div className="flex flex-col justify-start items-center gap-x-2">
-            <GrLocation className="text-black-300 text-2xl" />
-            <h2 className="my-1">{danceEvent.location}</h2>
+          <div className="flex flex-col justify-start items-left font-bold">
+            <div className="flex gap-x-2">
+              <GrLocation className="text-black text-2xl" />
+              <h2 className="my-1">{danceEvent.location}</h2>
+            </div>
             {!loading && (
               <MapContainer
                 center={mapLocation}
@@ -124,19 +126,25 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
               </MapContainer>
             )}
           </div>
-          <div className="flex flex-col">
-            <h2 className="font-bold">Dance styles:</h2>
-            <div className="w-fit py-1 flex flex-wrap">
-              {danceEvent?.danceStyles?.map((danceStyle) => (
-                <div
-                  key={danceStyle}
-                  className="bg-emerald-500 text-white rounded-full p-3 m-3"
-                >
-                  {danceStyle}
-                </div>
-              ))}
+          {danceEvent.danceStyles.length > 0 && (
+            <div className="flex flex-col">
+              <div className="flex justify-start items-center gap-x-2 font-bold">
+                <GiBallerinaShoes className="text-black text-2xl" />
+
+                <h2 className="font-bold">Dance styles:</h2>
+              </div>
+              <div className="w-fit py-1 flex flex-wrap">
+                {danceEvent?.danceStyles?.map((danceStyle) => (
+                  <div
+                    key={danceStyle}
+                    className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                  >
+                    {danceStyle}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
           <div className="py-4">
             <p className="mt-4">Random details to come...</p>
             <p className="my-2">
@@ -150,7 +158,10 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
           </div>
           <div>
             <div className="flex flex-col">
-              <h2 className="font-bold">Attendees:</h2>
+              <div className="flex justify-start items-center gap-x-2 font-bold">
+                <BiUserCircle className="text-black text-2xl" />
+                <h2 className="font-bold">Attendees:</h2>
+              </div>
               <div className="w-fit py-1 flex flex-wrap">
                 {danceEvent?.attendees?.map((attendee) => (
                   <div

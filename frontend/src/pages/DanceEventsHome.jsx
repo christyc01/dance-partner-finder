@@ -6,6 +6,7 @@ import DanceEventModal from '../components/home/DanceEventModal';
 import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from 'react-icons/md';
 import { GrLocation } from 'react-icons/gr';
+import { GiBallerinaShoes } from 'react-icons/gi';
 
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
@@ -64,9 +65,9 @@ const DanceEventsHome = () => {
                         setSelectedEvent(event);
                       }}
                     >
-                      <div className="flex gap-4 pb-4">
+                      <div className="flex gap-x-4 pb-4">
                         <GrLocation className="text-black-300 text-2xl" />
-                        <p>{event.location}</p>
+                        <p className="font-bold">{event.location}</p>
                       </div>
                       <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -78,15 +79,21 @@ const DanceEventsHome = () => {
                         architecto, dolore vitae voluptate sequi repellat
                       </p>
                       {event.danceStyles.length > 0 && (
-                        <div className="flex">
-                          {event.danceStyles.map((danceStyle) => (
-                            <p
-                              key={danceStyle}
-                              className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3"
-                            >
-                              {danceStyle}
-                            </p>
-                          ))}
+                        <div className="mt-8">
+                          <div className="flex gap-x-4">
+                            <GiBallerinaShoes className="text-black-300 text-2xl" />
+                            <p className="font-bold">Dance styles:</p>
+                          </div>
+                          <div className="flex">
+                            {event.danceStyles.map((danceStyle) => (
+                              <p
+                                key={danceStyle}
+                                className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3"
+                              >
+                                {danceStyle}
+                              </p>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
