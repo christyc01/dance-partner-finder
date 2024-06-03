@@ -78,8 +78,15 @@ const DanceEventsHome = () => {
                         architecto, dolore vitae voluptate sequi repellat
                       </p>
                       {event.danceStyles.length > 0 && (
-                        <div className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3">
-                          {event.danceStyles}
+                        <div className="flex">
+                          {event.danceStyles.map((danceStyle) => (
+                            <p
+                              key={danceStyle}
+                              className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3"
+                            >
+                              {danceStyle}
+                            </p>
+                          ))}
                         </div>
                       )}
                     </div>
