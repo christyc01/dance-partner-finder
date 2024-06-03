@@ -77,9 +77,11 @@ const DanceEventsHome = () => {
                         nisi dolorum est? Deserunt placeat cumque quo dicta
                         architecto, dolore vitae voluptate sequi repellat
                       </p>
-                      <div className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3">
-                        {event.danceStyles}
-                      </div>
+                      {event.danceStyles.length > 0 && (
+                        <div className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3">
+                          {event.danceStyles}
+                        </div>
+                      )}
                     </div>
                   ))}
               </div>
