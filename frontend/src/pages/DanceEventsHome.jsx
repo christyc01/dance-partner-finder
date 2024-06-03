@@ -42,7 +42,7 @@ const DanceEventsHome = () => {
       <div className="flex flex-col w-full items-center">
         <div className="w-full xl:w-3/4">
           <h1 className="text-2xl font-bold mb-2 text-emerald-600">
-            Show Dance Event
+            Dance Events
           </h1>
 
           {loading ? (
@@ -65,6 +65,7 @@ const DanceEventsHome = () => {
                         setSelectedEvent(event);
                       }}
                     >
+                      <p className="font-bold pb-4">{event.eventName}</p>
                       <div className="flex gap-x-4 pb-4">
                         <GrLocation className="text-black-300 text-2xl" />
                         <p className="font-bold">{event.location}</p>
