@@ -9,12 +9,46 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineDelete } from 'react-icons/md';
 
-const DanceEventModal = ({ danceEvent, closeModal }) => {
+const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   const [loading, setLoading] = useState(true);
+  const [attendees, setAttendees] = useState({});
   const [mapLocation, setMapLocation] = useState(danceEvent.location);
   // const address = '1600 Amphitheatre Parkway, Mountain View, CA';
   // const address = 'Frankfurt, Germany';
   const address = danceEvent.location;
+
+  const handleAttendeeComingClick = async (event, id) => {
+    event.preventDefault();
+
+    const updatedAttendees = [...danceEvent.attendees, attendees[id]];
+
+    const data = {
+      eventName: danceEvent.eventName,
+      location: danceEvent.location,
+      danceStyles: danceEvent.danceStyles,
+      attendees: updatedAttendees,
+    };
+
+    axios.put(`http://localhost:5555/dance-events/${id}`, data).then(() => {
+      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) => {
+        setDanceEventData((prevData) => ({
+          ...prevData,
+          data: prevData.data.map((event) =>
+            event._id === id ? { ...event, ...response.data } : event
+          ),
+        }));
+        setAttendees((prev) => ({ ...prev, [id]: '' }));
+      });
+    });
+  };
+
+  // Set newAttendee to the name from the input field
+  const handleAttendeeComingChange = (id, value) => {
+    setAttendees((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -119,6 +153,32 @@ const DanceEventModal = ({ danceEvent, closeModal }) => {
             dolorum est? Deserunt placeat cumque quo dicta architecto, dolore
             vitae voluptate sequi repellat!
           </p>
+        </div>
+        <div>
+          <form
+            onSubmit={(e) => handleAttendeeComingClick(e, danceEvent._id)}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <label htmlFor="attendeeName"></label>
+            <input
+              id="attendeeName"
+              type="text"
+              className="bg-green-400"
+              value={attendees[danceEvent._id] || ''}
+              onChange={(e) =>
+                handleAttendeeComingChange(danceEvent._id, e.target.value)
+              }
+            />
+            <button
+              type="submit"
+              className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
+              disabled={
+                !attendees[danceEvent._id] || attendees[danceEvent._id] === ''
+              }
+            >
+              I&apos;m coming!
+            </button>
+          </form>
         </div>
         <div className="flex justify-center items-center gap-x-4 mt-4 p-4">
           <Link to={`/dance-events/edit/${danceEvent._id}`}>

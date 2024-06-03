@@ -9,39 +9,8 @@ import { MdOutlineAddBox } from 'react-icons/md';
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [attendees, setAttendees] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({});
-
-  const handleAttendeeComingClick = async (event, id) => {
-    event.preventDefault();
-
-    const danceEventToUpdate = danceEventData.data.find(
-      (event) => event._id === id
-    );
-    if (!danceEventToUpdate) return;
-
-    const updatedAttendees = [...danceEventToUpdate.attendees, attendees[id]];
-
-    const data = {
-      eventName: danceEventToUpdate.eventName,
-      location: danceEventToUpdate.location,
-      danceStyles: danceEventToUpdate.danceStyles,
-      attendees: updatedAttendees,
-    };
-
-    axios.put(`http://localhost:5555/dance-events/${id}`, data).then(() => {
-      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) => {
-        setDanceEventData((prevData) => ({
-          ...prevData,
-          data: prevData.data.map((event) =>
-            event._id === id ? { ...event, ...response.data } : event
-          ),
-        }));
-        setAttendees((prev) => ({ ...prev, [id]: '' }));
-      });
-    });
-  };
 
   // Get the main dance event data for the cards
   useEffect(() => {
@@ -60,14 +29,6 @@ const DanceEventsHome = () => {
     };
     getDanceEventData();
   }, []);
-
-  // Set newAttendee to the name from the input field
-  const handleAttendeeComingChange = (id, value) => {
-    setAttendees((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
 
   const handleEventClick = () => {
     setShowModal(true);
@@ -116,37 +77,6 @@ const DanceEventsHome = () => {
                             ))}
                           </ul>
                         </div>
-                        <div>
-                          <form
-                            onSubmit={(e) =>
-                              handleAttendeeComingClick(e, event._id)
-                            }
-                          >
-                            <label htmlFor="attendeeName"></label>
-                            <input
-                              id="attendeeName"
-                              type="text"
-                              className="bg-green-400"
-                              value={attendees[event._id] || ''}
-                              onChange={(e) =>
-                                handleAttendeeComingChange(
-                                  event._id,
-                                  e.target.value
-                                )
-                              }
-                            />
-                            <button
-                              type="submit"
-                              className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
-                              disabled={
-                                !attendees[event._id] ||
-                                attendees[event._id] === ''
-                              }
-                            >
-                              I&apos;m coming!
-                            </button>
-                          </form>
-                        </div>
                       </div>
                     </div>
                   ))}
@@ -154,6 +84,7 @@ const DanceEventsHome = () => {
               {showModal && (
                 <DanceEventModal
                   danceEvent={selectedEvent}
+                  setDanceEventData={setDanceEventData}
                   closeModal={() => setShowModal(false)}
                 />
               )}
