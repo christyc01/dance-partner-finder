@@ -27,8 +27,14 @@ const DeleteDanceEvent = () => {
     <div>
       <BackButton />
       {loading ? <Spinner /> : ''}
-      <h1>DeleteDanceEvent</h1>
-      <button onClick={handleDelete}>Delete me</button>
+      <div className="flex flex-col w-full items-center">
+        <button
+          className="p-2 bg-emerald-800 text-white m-8 rounded-xl transition-colors"
+          onClick={handleDelete}
+        >
+          Delete this event
+        </button>
+      </div>
     </div>
   );
 };
