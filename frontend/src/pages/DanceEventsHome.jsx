@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner';
 import DanceEventModal from '../components/home/DanceEventModal';
 import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from 'react-icons/md';
+import { GrLocation } from 'react-icons/gr';
 
 const DanceEventsHome = () => {
   const [danceEventData, setDanceEventData] = useState({});
@@ -63,20 +64,21 @@ const DanceEventsHome = () => {
                         setSelectedEvent(event);
                       }}
                     >
-                      <p className="font-bold">{event.eventName}</p>
-                      <ul className="list-disc pl-8">
-                        <li>{event.location}</li>
-                        <li>{event.danceStyles}</li>
-                      </ul>
-                      <div className="flex justify-between mt-4">
-                        <div>
-                          <p>Attendees:</p>
-                          <ul className="list-disc pl-8">
-                            {event.attendees.map((attendee, index) => (
-                              <li key={index}>{attendee}</li>
-                            ))}
-                          </ul>
-                        </div>
+                      <div className="flex gap-4 pb-4">
+                        <GrLocation className="text-black-300 text-2xl" />
+                        <p>{event.location}</p>
+                      </div>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Magni quia voluptatum sint. Nisi impedit libero eveniet
+                        cum vitae qui expedita necessitatibus assumenda
+                        laboriosam, facilis iste cumque a pariatur nesciunt
+                        cupiditate voluptas? Quis atque earum voluptate dolor
+                        nisi dolorum est? Deserunt placeat cumque quo dicta
+                        architecto, dolore vitae voluptate sequi repellat
+                      </p>
+                      <div className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3">
+                        {event.danceStyles}
                       </div>
                     </div>
                   ))}
