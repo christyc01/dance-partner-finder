@@ -50,40 +50,40 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
     }));
   };
 
-  useEffect(() => {
-    setLoading(true);
-    const fetchCoordinates = async (address) => {
-      try {
-        const response = await axios.get(
-          'https://nominatim.openstreetmap.org/search',
-          {
-            params: {
-              q: address,
-              format: 'json',
-              addressdetails: 1,
-              limit: 1,
-            },
-          }
-        );
-        if (
-          response.data &&
-          response.data.length > 0 &&
-          response.data[0] !== null
-        ) {
-          console.log('response.data:', response.data);
-          const { lat, lon } = response.data[0];
-          setMapLocation([parseFloat(lat), parseFloat(lon)]);
-          setLoading(false);
-        } else {
-          console.warn('No matching location found for the provided address');
-        }
-      } catch (error) {
-        console.error('Error fetching coordinates:', error);
-        setLoading(false);
-      }
-    };
-    fetchCoordinates(address);
-  }, [address]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const fetchCoordinates = async (address) => {
+  //     try {
+  //       const response = await axios.get(
+  //         'https://nominatim.openstreetmap.org/search',
+  //         {
+  //           params: {
+  //             q: address,
+  //             format: 'json',
+  //             addressdetails: 1,
+  //             limit: 1,
+  //           },
+  //         }
+  //       );
+  //       if (
+  //         response.data &&
+  //         response.data.length > 0 &&
+  //         response.data[0] !== null
+  //       ) {
+  //         console.log('response.data:', response.data);
+  //         const { lat, lon } = response.data[0];
+  //         setMapLocation([parseFloat(lat), parseFloat(lon)]);
+  //         setLoading(false);
+  //       } else {
+  //         console.warn('No matching location found for the provided address');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching coordinates:', error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchCoordinates(address);
+  // }, [address]);
 
   return (
     <div
