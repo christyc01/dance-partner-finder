@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { danceStyleOptions } from '../utils/danceStyleOptions';
 
 const CreateDanceEvent = () => {
   const [formValues, setFormValues] = useState({
@@ -11,6 +12,22 @@ const CreateDanceEvent = () => {
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.id]: e.target.value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    if (e.target.checked) {
+      setFormValues({
+        ...formValues,
+        danceStyles: [...formValues.danceStyles, e.target.value].sort(),
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        danceStyles: formValues.danceStyles
+          .filter((danceStyle) => danceStyle !== e.target.value)
+          .sort(),
+      });
+    }
   };
 
   const data = {
@@ -48,14 +65,32 @@ const CreateDanceEvent = () => {
           className="bg-emerald-50 p-4 rounded-xl"
           onChange={(e) => handleChange(e)}
         />
-        <label htmlFor="danceStyles">DanceStyles:</label>
-        <input
-          id="danceStyles"
-          type="text"
-          placeholder="Holding the place"
-          className="bg-emerald-50 p-4 rounded-xl"
-          onChange={(e) => handleChange(e)}
-        />
+        <div className="my-4">
+          <label
+            htmlFor="location"
+            className="text-xl mr-4 text-emerald-600 font-bold"
+          >
+            Select dance styles:
+          </label>
+          {danceStyleOptions.map((danceStyleOption) => (
+            <div key={danceStyleOption} className="my-6">
+              <input
+                id={danceStyleOption}
+                type="checkbox"
+                value={danceStyleOption}
+                onChange={handleCheckboxChange}
+                className="hidden peer/checkedField"
+              />
+              <label
+                htmlFor={danceStyleOption}
+                className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-emerald-500 text-emerald-600 peer-checked/checkedField:bg-emerald-500 peer-checked/checkedField:text-white"
+              >
+                {danceStyleOption.slice(0, 1).toUpperCase()}
+                {danceStyleOption.slice(1)}
+              </label>
+            </div>
+          ))}
+        </div>
         <label htmlFor="attendees">Attendees:</label>
         <input
           id="attendees"
