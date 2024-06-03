@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import { danceStyleOptions } from '../utils/danceStyleOptions';
 
 const CreateDancer = () => {
   const [formValues, setFormValues] = useState({
@@ -14,14 +15,6 @@ const CreateDancer = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const danceStyleOptions = [
-    'tango',
-    'waltz',
-    'foxtrot',
-    'bachata',
-    'salsa',
-    'swing',
-  ].sort();
 
   const createDancer = (e) => {
     e.preventDefault();
