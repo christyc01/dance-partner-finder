@@ -124,61 +124,70 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
               </MapContainer>
             )}
           </div>
-          <div className="w-fit py-1 flex flex-wrap">
-            {danceEvent?.danceStyles?.map((danceStyle) => (
-              <div
-                key={danceStyle}
-                className="bg-emerald-500 text-white rounded-full p-3 m-3"
-              >
-                {danceStyle}
-              </div>
-            ))}
+          <div className="flex flex-col">
+            <h2 className="font-bold">Dance styles:</h2>
+            <div className="w-fit py-1 flex flex-wrap">
+              {danceEvent?.danceStyles?.map((danceStyle) => (
+                <div
+                  key={danceStyle}
+                  className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                >
+                  {danceStyle}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="w-fit py-1 flex flex-wrap">
-            {danceEvent?.attendees?.map((attendee) => (
-              <div
-                key={attendee}
-                className="bg-emerald-500 text-white rounded-full p-3 m-3"
-              >
-                {attendee}
-              </div>
-            ))}
+          <div className="py-4">
+            <p className="mt-4">Random details to come...</p>
+            <p className="my-2">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+              quia voluptatum sint. Nisi impedit libero eveniet cum vitae qui
+              expedita necessitatibus assumenda laboriosam, facilis iste cumque
+              a pariatur nesciunt cupiditate voluptas? Quis atque earum
+              voluptate dolor nisi dolorum est? Deserunt placeat cumque quo
+              dicta architecto, dolore vitae voluptate sequi repellat!
+            </p>
           </div>
-          <p className="mt-4">Random details to come...</p>
-          <p className="my-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quia
-            voluptatum sint. Nisi impedit libero eveniet cum vitae qui expedita
-            necessitatibus assumenda laboriosam, facilis iste cumque a pariatur
-            nesciunt cupiditate voluptas? Quis atque earum voluptate dolor nisi
-            dolorum est? Deserunt placeat cumque quo dicta architecto, dolore
-            vitae voluptate sequi repellat!
-          </p>
-        </div>
-        <div>
-          <form
-            onSubmit={(e) => handleAttendeeComingClick(e, danceEvent._id)}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <label htmlFor="attendeeName"></label>
-            <input
-              id="attendeeName"
-              type="text"
-              className="bg-green-400"
-              value={attendees[danceEvent._id] || ''}
-              onChange={(e) =>
-                handleAttendeeComingChange(danceEvent._id, e.target.value)
-              }
-            />
-            <button
-              type="submit"
-              className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
-              disabled={
-                !attendees[danceEvent._id] || attendees[danceEvent._id] === ''
-              }
+          <div>
+            <div className="flex flex-col">
+              <h2 className="font-bold">Attendees:</h2>
+              <div className="w-fit py-1 flex flex-wrap">
+                {danceEvent?.attendees?.map((attendee) => (
+                  <div
+                    key={attendee}
+                    className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                  >
+                    {attendee}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <form
+              onSubmit={(e) => handleAttendeeComingClick(e, danceEvent._id)}
+              onClick={(e) => e.stopPropagation()}
             >
-              I&apos;m coming!
-            </button>
-          </form>
+              <label htmlFor="attendeeName"></label>
+              <input
+                id="attendeeName"
+                type="text"
+                className="bg-gray-100 p-2 mr-4 rounded-lg"
+                placeholder="Name"
+                value={attendees[danceEvent._id] || ''}
+                onChange={(e) =>
+                  handleAttendeeComingChange(danceEvent._id, e.target.value)
+                }
+              />
+              <button
+                type="submit"
+                className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
+                disabled={
+                  !attendees[danceEvent._id] || attendees[danceEvent._id] === ''
+                }
+              >
+                I&apos;m coming!
+              </button>
+            </form>
+          </div>
         </div>
         <div className="flex justify-center items-center gap-x-4 mt-4 p-4">
           <Link to={`/dance-events/edit/${danceEvent._id}`}>
