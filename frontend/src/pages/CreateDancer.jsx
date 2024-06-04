@@ -34,7 +34,7 @@ const CreateDancer = () => {
         enqueueSnackbar('Successfully created a dancer!', {
           variant: 'success',
         });
-        navigate('/');
+        navigate('/dancers');
       })
       .catch((error) => {
         setLoading(false);

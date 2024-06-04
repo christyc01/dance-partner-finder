@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 import { danceStyleOptions } from '../utils/danceStyleOptions';
+import { useNavigate } from 'react-router-dom';
 
 const CreateDanceEvent = () => {
   const [formValues, setFormValues] = useState({
@@ -9,6 +10,7 @@ const CreateDanceEvent = () => {
     danceStyles: [],
     attendees: [],
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.id]: e.target.value });
@@ -37,10 +39,12 @@ const CreateDanceEvent = () => {
     attendees: formValues.attendees,
   };
 
-  const handleSubmit = () => {
-    axios
-      .post('http://localhost:5555/dance-events', data)
-      .then((response) => console.log(response));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:5555/dance-events', data).then((response) => {
+      console.log(response);
+      navigate('/dance-events');
+    });
   };
 
   console.log('formValues:', formValues);

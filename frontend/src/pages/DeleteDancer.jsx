@@ -17,7 +17,7 @@ const DeleteDancer = () => {
       .delete(`http://localhost:5555/dancers/${id}`)
       .then(() => {
         enqueueSnackbar('Successfully deleted', { variant: 'success' });
-        navigate('/');
+        navigate('/dancers');
         setLoading(false);
       })
       .catch((error) => {

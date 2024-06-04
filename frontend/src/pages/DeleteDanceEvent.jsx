@@ -14,7 +14,7 @@ const DeleteDanceEvent = () => {
     axios
       .delete(`http://localhost:5555/dance-events/${id}`)
       .then(() => {
-        navigate('/');
+        navigate('/dance-events');
         setLoading(false);
       })
       .catch((error) => {
