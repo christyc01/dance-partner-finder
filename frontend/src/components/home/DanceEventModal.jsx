@@ -13,6 +13,7 @@ import { GiBallerinaShoes } from 'react-icons/gi';
 const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   const [loading, setLoading] = useState(true);
   const [attendees, setAttendees] = useState({});
+  const [attendeeArray, setAttendeeArray] = useState([]);
   const [mapLocation, setMapLocation] = useState(danceEvent.location);
   // const address = '1600 Amphitheatre Parkway, Mountain View, CA';
   // const address = 'Frankfurt, Germany';
@@ -38,7 +39,11 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
             event._id === id ? { ...event, ...response.data } : event
           ),
         }));
+        setAttendeeArray((prevArray) => [...prevArray, attendees[id]]);
         setAttendees((prev) => ({ ...prev, [id]: '' }));
+        console.log('attendeeArray:', attendeeArray);
+        console.log('attendees:', attendees);
+        console.log('attendees[id]:', attendees[id]);
       });
     });
   };
@@ -50,6 +55,10 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
       [id]: value,
     }));
   };
+
+  useEffect(() => {
+    setAttendeeArray(danceEvent.attendees);
+  }, [danceEvent.attendees]);
 
   // useEffect(() => {
   //   setLoading(true);
@@ -163,9 +172,9 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
                 <h2 className="font-bold">Attendees:</h2>
               </div>
               <div className="w-fit py-1 flex flex-wrap">
-                {danceEvent?.attendees?.map((attendee) => (
+                {attendeeArray.map((attendee, index) => (
                   <div
-                    key={attendee}
+                    key={index}
                     className="bg-emerald-500 text-white rounded-full p-3 m-3"
                   >
                     {attendee}
