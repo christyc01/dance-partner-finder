@@ -12,7 +12,7 @@ import { GiBallerinaShoes } from 'react-icons/gi';
 
 const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   const [loading, setLoading] = useState(true);
-  const [attendees, setAttendees] = useState({});
+  const [newAttendeeByEventId, setNewAttendeeByEventId] = useState({});
   const [attendeeArray, setAttendeeArray] = useState([]);
   const [mapLocation, setMapLocation] = useState(danceEvent.location);
   // const address = '1600 Amphitheatre Parkway, Mountain View, CA';
@@ -22,7 +22,10 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   const handleAttendeeComingClick = async (event, id) => {
     event.preventDefault();
 
-    const updatedAttendees = [...danceEvent.attendees, attendees[id]];
+    const updatedAttendees = [
+      ...danceEvent.attendees,
+      newAttendeeByEventId[id],
+    ];
 
     const data = {
       eventName: danceEvent.eventName,
@@ -39,18 +42,18 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
             event._id === id ? { ...event, ...response.data } : event
           ),
         }));
-        setAttendeeArray((prevArray) => [...prevArray, attendees[id]]);
-        setAttendees((prev) => ({ ...prev, [id]: '' }));
-        console.log('attendeeArray:', attendeeArray);
-        console.log('attendees:', attendees);
-        console.log('attendees[id]:', attendees[id]);
+        setAttendeeArray((prevArray) => [
+          ...prevArray,
+          newAttendeeByEventId[id],
+        ]);
+        setNewAttendeeByEventId((prev) => ({ ...prev, [id]: '' }));
       });
     });
   };
 
   // Set newAttendee to the name from the input field
   const handleAttendeeComingChange = (id, value) => {
-    setAttendees((prev) => ({
+    setNewAttendeeByEventId((prev) => ({
       ...prev,
       [id]: value,
     }));
@@ -192,7 +195,7 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
                 type="text"
                 className="bg-gray-100 p-2 mr-4 rounded-lg"
                 placeholder="Name"
-                value={attendees[danceEvent._id] || ''}
+                value={newAttendeeByEventId[danceEvent._id] || ''}
                 onChange={(e) =>
                   handleAttendeeComingChange(danceEvent._id, e.target.value)
                 }
@@ -201,7 +204,8 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
                 type="submit"
                 className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
                 disabled={
-                  !attendees[danceEvent._id] || attendees[danceEvent._id] === ''
+                  !newAttendeeByEventId[danceEvent._id] ||
+                  newAttendeeByEventId[danceEvent._id] === ''
                 }
               >
                 I&apos;m coming!
