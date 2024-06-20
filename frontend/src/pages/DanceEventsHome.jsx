@@ -49,28 +49,30 @@ const DanceEventsHome = () => {
             <Spinner />
           ) : (
             <div>
-              <div>
+              <div className="flex justify-end mb-4">
                 <Link to="/dance-events/create">
                   <MdOutlineAddBox className="text-emerald-800 text-4xl" />
                 </Link>
               </div>
-              <div className="p-0 md:p-4 mt-2 grid lg:grid-cols-3 xl:grid-cols-4 justify-center">
+              <div className="p-0 mt-2 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-8">
                 {danceEventData.data &&
                   danceEventData.data.map((event) => (
                     <div
                       key={event._id}
-                      className="border-2 border-emerald-500 m-4 p-4 rounded-lg bg-emerald-50"
+                      className="p-6 md:rounded-lg bg-emerald-100 hover:bg-emerald-200 hover:cursor-pointer"
                       onClick={() => {
                         handleEventClick();
                         setSelectedEvent(event);
                       }}
                     >
-                      <p className="font-bold pb-4">{event.eventName}</p>
-                      <div className="flex gap-x-4 pb-4">
+                      <p className="mb-6 text-lg font-bold leading-6">
+                        {event.eventName}
+                      </p>
+                      <div className="flex gap-x-2 pb-4">
                         <GrLocation className="text-black-300 text-2xl" />
                         <p className="font-bold">{event.location}</p>
                       </div>
-                      <p>
+                      <p className="line-clamp-5">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Magni quia voluptatum sint. Nisi impedit libero eveniet
                         cum vitae qui expedita necessitatibus assumenda
@@ -81,15 +83,15 @@ const DanceEventsHome = () => {
                       </p>
                       {event.danceStyles.length > 0 && (
                         <div className="mt-8">
-                          <div className="flex gap-x-4">
+                          <div className="flex gap-x-2">
                             <GiBallerinaShoes className="text-black-300 text-2xl" />
-                            <p className="font-bold">Dance styles:</p>
+                            <p className="font-bold mb-2">Dance styles:</p>
                           </div>
-                          <div className="flex">
+                          <div className="flex flex-wrap gap-3">
                             {event.danceStyles.map((danceStyle) => (
                               <p
                                 key={danceStyle}
-                                className="w-fit bg-emerald-500 text-white rounded-full p-3 m-3"
+                                className="w-fit bg-emerald-500 text-white rounded-full px-3 py-1"
                               >
                                 {danceStyle}
                               </p>
