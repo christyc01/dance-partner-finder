@@ -30,11 +30,11 @@ const DancerSingleCard = ({
           <GrLocation className="text-2xl" />
           <h2 className="my-1">{dancer.location}</h2>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap pt-4 gap-3">
           {dancer?.danceStyles?.map((danceStyle) => (
             <div
               key={danceStyle}
-              className="bg-emerald-500 text-white rounded-full p-3 m-3"
+              className="bg-emerald-500 text-white rounded-full px-3 py-1"
             >
               {danceStyle}
             </div>

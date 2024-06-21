@@ -151,11 +151,11 @@ const DancersTable = ({ data, showOperations, showModal, setShowModal }) => {
                 {dancer.location}
               </td>
               <td className="border border-emerald-200 rounded-md p-2 w-4/12">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {dancer?.danceStyles?.map((danceStyle) => (
                     <div
                       key={danceStyle}
-                      className="bg-emerald-500 text-white p-2 rounded-full"
+                      className="bg-emerald-500 text-white p-2 rounded-full px-3 py-1"
                     >
                       {danceStyle}
                     </div>

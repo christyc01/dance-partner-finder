@@ -159,7 +159,7 @@ const EditDanceEvent = () => {
             <div className="flex flex-col justify-start items-left font-bold">
               <div className="flex gap-x-2">
                 <GrLocation className="text-black text-2xl" />
-                <h2 className="my-1">{formValues.location}</h2>
+                <h2 className="my-1 pb-4">{formValues.location}</h2>
               </div>
               {/* {!loading && (
                 <MapContainer
@@ -186,11 +186,11 @@ const EditDanceEvent = () => {
 
                   <h2 className="font-bold">Dance styles:</h2>
                 </div>
-                <div className="w-fit py-1 flex flex-wrap">
+                <div className="w-fit py-1 flex flex-wrap gap-3">
                   {formValues?.danceStyles?.map((danceStyle) => (
                     <div
                       key={danceStyle}
-                      className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                      className="bg-emerald-500 text-white rounded-full px-3 py-1"
                     >
                       {danceStyle}
                     </div>
@@ -215,11 +215,11 @@ const EditDanceEvent = () => {
                   <BiUserCircle className="text-black text-2xl" />
                   <h2 className="font-bold">Attendees:</h2>
                 </div>
-                <div className="w-fit py-1 flex flex-wrap">
+                <div className="w-fit py-1 flex flex-wrap gap-3">
                   {formValues.attendees.map((attendee, index) => (
                     <div
                       key={index}
-                      className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                      className="bg-emerald-500 text-white rounded-full px-3 py-1"
                     >
                       {attendee}
                     </div>

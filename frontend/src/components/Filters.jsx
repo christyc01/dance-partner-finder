@@ -13,10 +13,10 @@ const Filters = ({
         <h3 className="text-xl font-semibold mb-2 text-emerald-600">
           Filter by Location
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={() => setLocationsToShow('')}
-            className={`py-2 px-4 rounded-full transition-colors ${
+            className={`px-3 py-1 rounded-full transition-colors ${
               !locationsToShow.length
                 ? 'bg-emerald-500 text-white'
                 : 'bg-emerald-200 text-emerald-700'
@@ -36,7 +36,7 @@ const Filters = ({
                     )
                   : setLocationsToShow([...locationsToShow, uniqueLocation])
               }
-              className={`py-2 px-4 rounded-full transition-colors ${
+              className={`px-3 py-1 rounded-full transition-colors ${
                 locationsToShow.includes(uniqueLocation)
                   ? 'bg-emerald-500 text-white'
                   : 'bg-emerald-200 text-emerald-700'
@@ -51,10 +51,10 @@ const Filters = ({
         <h3 className="text-xl font-semibold mb-2 text-emerald-600">
           Filter by Dance Style
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={() => setDanceStylesToShow([])}
-            className={`py-2 px-4 rounded-full transition-colors ${
+            className={`px-3 py-1 rounded-full transition-colors ${
               !danceStylesToShow.length
                 ? 'bg-emerald-500 text-white'
                 : 'bg-emerald-200 text-emerald-700'
@@ -77,7 +77,7 @@ const Filters = ({
                       uniqueDanceStyle,
                     ])
               }
-              className={`py-2 px-4 rounded-full transition-colors ${
+              className={`px-3 py-1 rounded-full transition-colors ${
                 danceStylesToShow.includes(uniqueDanceStyle)
                   ? 'bg-emerald-500 text-white'
                   : 'bg-emerald-200 text-emerald-700'

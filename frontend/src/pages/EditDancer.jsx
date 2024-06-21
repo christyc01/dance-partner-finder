@@ -139,7 +139,7 @@ const EditDancer = () => {
                 Dance styles:{' '}
               </label>
               {danceStyleOptions.map((danceStyleOption) => (
-                <div key={danceStyleOption} className="my-6">
+                <div key={danceStyleOption} className="my-6 gap-3">
                   <input
                     id={danceStyleOption}
                     type="checkbox"
@@ -150,7 +150,7 @@ const EditDancer = () => {
                   />
                   <label
                     htmlFor={danceStyleOption}
-                    className="text-xl mr-4 py-2 px-4 rounded-full transition-colors border-2 border-emerald-500 text-emerald-600 peer-checked/checkedField:bg-emerald-500 peer-checked/checkedField:text-white"
+                    className="text-xl mr-4 px-3 py-1 rounded-full transition-colors border-2 border-emerald-500 text-emerald-600 peer-checked/checkedField:bg-emerald-500 peer-checked/checkedField:text-white"
                   >
                     {danceStyleOption.slice(0, 1).toUpperCase()}
                     {danceStyleOption.slice(1)}

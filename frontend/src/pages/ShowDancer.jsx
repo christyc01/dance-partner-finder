@@ -60,11 +60,11 @@ const ShowDancer = () => {
                 <span className="text-xl mr-4 text-emerald-600 font-bold">
                   Dance styles
                 </span>
-                <span className="flex flex-wrap">
+                <span className="flex flex-wrap gap-3 mt-2">
                   {dancer?.danceStyles?.map((danceStyle) => (
                     <div
                       key={danceStyle}
-                      className="text-xl mr-4 mt-4 py-2 px-4 rounded-full transition-colors bg-emerald-500 text-white"
+                      className="text-xl mr-4 px-3 py-1 rounded-full transition-colors bg-emerald-500 text-white"
                     >
                       {danceStyle}
                     </div>

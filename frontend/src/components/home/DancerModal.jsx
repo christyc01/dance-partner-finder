@@ -26,11 +26,11 @@ const DancerModal = ({ dancer, closeModal }) => {
             <GrLocation className="text-black-300 text-2xl" />
             <h2 className="my-1">{dancer.location}</h2>
           </div>
-          <div className="w-fit py-1 flex flex-wrap">
+          <div className="w-fit py-1 flex flex-wrap gap-3">
             {dancer?.danceStyles?.map((danceStyle) => (
               <div
                 key={danceStyle}
-                className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                className="bg-emerald-500 text-white rounded-full px-3 py-1"
               >
                 {danceStyle}
               </div>

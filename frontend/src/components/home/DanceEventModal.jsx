@@ -118,7 +118,7 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
           <div className="flex flex-col justify-start items-left font-bold">
             <div className="flex gap-x-2">
               <GrLocation className="text-black text-2xl" />
-              <h2 className="my-1">{danceEvent.location}</h2>
+              <h2 className="mt-1 mb-4">{danceEvent.location}</h2>
             </div>
             {!loading && (
               <MapContainer
@@ -145,11 +145,11 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
 
                 <h2 className="font-bold">Dance styles:</h2>
               </div>
-              <div className="w-fit py-1 flex flex-wrap">
+              <div className="w-fit py-1 flex flex-wrap gap-3">
                 {danceEvent?.danceStyles?.map((danceStyle) => (
                   <div
                     key={danceStyle}
-                    className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                    className="bg-emerald-500 text-white rounded-full px-3 py-1"
                   >
                     {danceStyle}
                   </div>
@@ -174,11 +174,11 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
                 <BiUserCircle className="text-black text-2xl" />
                 <h2 className="font-bold">Attendees:</h2>
               </div>
-              <div className="w-fit py-1 flex flex-wrap">
+              <div className="w-fit pt-1 pb-6 flex flex-wrap gap-3">
                 {attendeeArray.map((attendee, index) => (
                   <div
                     key={index}
-                    className="bg-emerald-500 text-white rounded-full p-3 m-3"
+                    className="bg-emerald-500 text-white rounded-full px-3 py-1"
                   >
                     {attendee}
                   </div>
@@ -202,7 +202,7 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
               />
               <button
                 type="submit"
-                className={`bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1 rounded-full disabled:bg-gray-400`}
+                className={`bg-emerald-500 hover:bg-emerald-600 text-white px-3 py-1 rounded-full disabled:bg-gray-400`}
                 disabled={
                   !newAttendeeByEventId[danceEvent._id] ||
                   newAttendeeByEventId[danceEvent._id] === ''
