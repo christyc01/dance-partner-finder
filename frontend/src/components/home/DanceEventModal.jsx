@@ -19,6 +19,10 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
   // const address = 'Frankfurt, Germany';
   const address = danceEvent.location;
 
+  const editEvent = () => {
+    console.log('editing event');
+  };
+
   const handleAttendeeComingClick = async (event, id) => {
     event.preventDefault();
 
@@ -213,10 +217,16 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
             </form>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-x-4 mt-4 p-4">
-          <Link to={`/dance-events/edit/${danceEvent._id}`}>
-            <AiOutlineEdit className="text-2xl text-yellow-600" />
-          </Link>
+        <div
+          className="flex justify-center items-center gap-x-4 mt-4 p-4"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* <Link to={`/dance-events/edit/${danceEvent._id}`}> */}
+          <AiOutlineEdit
+            className="text-2xl text-yellow-600"
+            onClick={() => editEvent()}
+          />
+          {/* </Link> */}
           <Link to={`/dance-events/delete/${danceEvent._id}`}>
             <MdOutlineDelete className="text-2xl text-red-600" />
           </Link>
