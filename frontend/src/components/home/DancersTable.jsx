@@ -54,7 +54,7 @@ const DancersTable = ({ data, showOperations, showModal, setShowModal }) => {
   }, [locationsToShow, danceStylesToShow, data]);
 
   return (
-    <div className="p-0 md:p-4">
+    <div>
       <Filters
         locationsToShow={locationsToShow}
         setLocationsToShow={setLocationsToShow}

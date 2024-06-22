@@ -3,10 +3,11 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MdOutlineAddBox } from 'react-icons/md';
 import Spinner from '../components/Spinner';
-import DancersCard from '../components/home/DancersCard';
+// import DancersCard from '../components/home/DancersCard';
 import DancersTable from '../components/home/DancersTable';
 import AdminToggle from '../components/AdminToggle';
 import ViewToggle from '../components/ViewToggle';
+import BackButton from '../components/BackButton';
 
 const DancersHome = () => {
   const [data, setData] = useState([]);
@@ -49,15 +50,19 @@ const DancersHome = () => {
 
   return (
     <div className="p-0 md:p-4">
-      <div className="flex flex-col justify-center items-center gap-y-2 mt-4">
+      <div className="flex w-full justify-between">
+        <BackButton />
         <AdminToggle
           showOperations={showOperations}
           setShowOperations={setShowOperations}
         />
-        <ViewToggle view={view} setView={setView} />
       </div>
-      <div className="flex justify-between items-center mx-4">
-        <h1 className="text-3xl my-8">Dancers</h1>
+      <div className="flex flex-col justify-center items-center gap-y-2 mt-4">
+        {/* TODO: Remove card view completely? */}
+        {/* <ViewToggle view={view} setView={setView} /> */}
+      </div>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold my-2 text-emerald-600">Dancers</h1>
         <Link to="/dancers/create">
           <MdOutlineAddBox className="text-emerald-800 text-4xl" />
         </Link>
