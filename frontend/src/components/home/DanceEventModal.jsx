@@ -10,17 +10,47 @@ import { Link } from 'react-router-dom';
 import { MdOutlineDelete } from 'react-icons/md';
 import { GiBallerinaShoes } from 'react-icons/gi';
 
-const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
+const DanceEventModal = ({
+  danceEvent,
+  danceEventData,
+  setDanceEventData,
+  closeModal,
+}) => {
   const [loading, setLoading] = useState(true);
   const [newAttendeeByEventId, setNewAttendeeByEventId] = useState({});
   const [attendeeArray, setAttendeeArray] = useState([]);
+  const [isInEditMode, setIsInEditMode] = useState(false);
+  const [editedDanceEvent, setEditedDanceEvent] = useState(danceEvent);
   const [mapLocation, setMapLocation] = useState(danceEvent.location);
   // const address = '1600 Amphitheatre Parkway, Mountain View, CA';
   // const address = 'Frankfurt, Germany';
   const address = danceEvent.location;
 
   const editEvent = () => {
-    console.log('editing event');
+    setIsInEditMode(true);
+  };
+
+  const handleSubmitEdits = (event, id) => {
+    event.preventDefault();
+    setIsInEditMode(false);
+
+    const data = {
+      eventName: editedDanceEvent.eventName,
+      location: editedDanceEvent.location,
+      danceStyles: editedDanceEvent.danceStyles,
+      attendees: editedDanceEvent.attendees,
+    };
+
+    axios.put(`http://localhost:5555/dance-events/${id}`, data).then(() => {
+      axios.get(`http://localhost:5555/dance-events/${id}`).then((response) => {
+        setDanceEventData((prevData) => ({
+          ...prevData,
+          data: prevData.data.map((event) => {
+            return event._id === id ? { ...event, ...response.data } : event;
+          }),
+        }));
+      });
+    });
   };
 
   const handleAttendeeComingClick = async (event, id) => {
@@ -117,7 +147,20 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
             className="absolute right-6 top-6 text-3xl text-emerald-600 cursor-pointer"
           />
           <div className="flex justify-start items-center font-bold pb-4">
-            <h2 className="my-1">{danceEvent.eventName}</h2>
+            {isInEditMode ? (
+              <input
+                className="border-2 border-pink-700 rounded-xl p-2 "
+                defaultValue={danceEvent.eventName}
+                onChange={(e) =>
+                  setEditedDanceEvent({
+                    ...editedDanceEvent,
+                    eventName: e.target.value,
+                  })
+                }
+              />
+            ) : (
+              <h2 className="my-1">{danceEvent.eventName}</h2>
+            )}
           </div>
           <div className="flex flex-col justify-start items-left font-bold">
             <div className="flex gap-x-2">
@@ -221,12 +264,22 @@ const DanceEventModal = ({ danceEvent, setDanceEventData, closeModal }) => {
           className="flex justify-center items-center gap-x-4 mt-4 p-4"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* <Link to={`/dance-events/edit/${danceEvent._id}`}> */}
-          <AiOutlineEdit
-            className="text-2xl text-yellow-600"
-            onClick={() => editEvent()}
-          />
-          {/* </Link> */}
+          {isInEditMode ? (
+            <button
+              type="submit"
+              onClick={(e) => {
+                handleSubmitEdits(e, danceEvent._id);
+                closeModal();
+              }}
+            >
+              Submit Changes
+            </button>
+          ) : (
+            <AiOutlineEdit
+              className="text-2xl text-yellow-600"
+              onClick={(e) => editEvent()}
+            />
+          )}
           <Link to={`/dance-events/delete/${danceEvent._id}`}>
             <MdOutlineDelete className="text-2xl text-red-600" />
           </Link>

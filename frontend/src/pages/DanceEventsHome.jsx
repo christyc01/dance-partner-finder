@@ -106,6 +106,7 @@ const DanceEventsHome = () => {
             {showModal && (
               <DanceEventModal
                 danceEvent={selectedEvent}
+                danceEventData={danceEventData}
                 setDanceEventData={setDanceEventData}
                 closeModal={() => setShowModal(false)}
               />
